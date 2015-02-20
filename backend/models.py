@@ -4,7 +4,7 @@ import StringIO
 import logging
 from django.db import IntegrityError
 
-class User(models.Model):
+class UsersModel(models.Model):
     user = models.CharField(unique=True, max_length=128)
     first_name = models.CharField(max_length=128, null=True)
     last_name = models.CharField(max_length=128, null=True)

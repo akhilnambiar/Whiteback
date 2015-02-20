@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!-- saved from url=(0051)http://serene-meadow-7552.herokuapp.com/client.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js" type="text/javascript"></script>
+</head>
+
+
+<form action="add_user/" method="post">
+  Adding a User
+  {% csrf_token %}
+  User ID<input type="text" name="username">
+  School<input type="text" name="school">
+  Teacher<input type="text" name="teacher">
+  Period<input type="text" name="period">
+  First Name<input type="text" name="first_name">
+  Last Name<input type="text" name="last_name">
+  Email<input type="text" name="email">
+  <input id="second-one" type="submit" value="Sign Up">
+</form>
+<form action="login/" method="get">
+  Logging In
+  {% csrf_token %}
+  Username<input type="text" name="username">
+  <input id="second-one" type="submit" value="Login">
+</form>
+<form action="add_handout/" method="post">
+  Add Handout
+  {% csrf_token %}
+  file_name<input type="text" name="file_name">
+  teacher<input type="text" name="teacher">
+  period<input type="text" name="period">
+  <input id="second-one" type="submit" value="Add">
+</form>
+<form action="get_handout/" method="get">
+  Get Handout (changed)
+  {% csrf_token %}
+  teacher<input type="text" name="teacher">
+  period<input type="text" name="period">
+  <input id="second-one" type="submit" value="Get">
+</form>
+<form action="get_classmates/" method="get">
+  Get Classmates
+  {% csrf_token %}
+  teacher<input type="text" name="teacher">
+  period<input type="text" name="period">
+  <input id="second-one" type="submit" value="Get">
+</form>
+<form action="send_invites/" method="POST">
+  Send Invites
+  {% csrf_token %}
+  user_id<input type="text" name="user_id" id="user_id">
+  file name<input type="text" name="file_name" id="file_name">
+  <input id="second-one2" type="submit" value="Get">
+</form>
+<form action="get_invites/" method="GET">
+  Get Invites
+  {% csrf_token %}
+  user_id<input type="text" name="user_id">
+  teacher<input type="text" name="teacher">
+  period<input type="text" name="period">
+  <input id="second-one2" type="submit" value="Get">
+</form>
+<div id="result">
+  Result will come here
+</div>
+<script type="text/javascript">
+  $(document).ready(function() {
+    console.log("starting")
+    $('#second-one-REPLACETHISWITHA2TOWORK').click(function() {
+      u = $('#user_id').val()
+      f = $('#file_name').val()
+      var array = u.split(',');
+      console.log('hi')
+      console.log(u);
+      $.ajax({
+          url : "/send_invites/",
+          type : "POST",
+          dataType: "json",
+          data : {
+          user_id: array,
+          file_name: f,
+        },
+        success : function(json) {
+          $('#result').append( 'Server Response: ' + json.server_response);
+          console.log('Server Response: ' + json.server_response)
+        },
+        error : function(xhr,errmsg,err) {
+        $('#result').append( 'you a failure doe');
+        console.log("A: JEREMY")
+        }
+        });
+        return false;
+      });
+  });
+</script>
+<!--
+<script type="text/javascript">
+
+  <h1>This is now being used for Classboard</h1>
+<form>
+  {% csrf_token %}
+  Username<input type="text" id="username">
+  School<input type="text" id="school">
+  Teacher<input type="text" id="teacher">
+  Period<input type="text" id="period">
+  <input id="add-user" type="submit" value="Sign Up">
+</form>
+
+
+$('#add-user').click(function() {
+   console.log('hi')
+   u = $('#username').val()
+   s = $('#school').val()
+   t = $('#teacher').val()
+   p = $('#period').val()
+   console.log(u);
+   resp = {username:u,school:s,teacher:t,period:p}
+   console.log(JSON.stringify({username:u,school:s,teacher:t,period:p}));
+   json_request("/add_user/",resp, function(data) { console.log("NO WAY JOSE") },function(err){console.log("NO contest")});
+
+
+   return false;
+});
+
+
+/* Takes a dictionary to be JSON encoded, calls the success
+   function with the diction decoded from the JSON response.*/
+function json_request(page, dict, success, failure) {
+    $.ajax({
+        type: 'POST',
+        url: page,
+        data: JSON.stringify({username:$('#username').val(),school:$('#school').val(),teacher:$('#teacher').val(),period:$('#period').val()}),
+        contentType: "application/json",
+        dataType: "json",
+        success: success,
+        failure: failure
+    });
+    console.log(JSON.stringify(dict))
+}
+
+</script>
+
+    $("#button").click(function() {
+      var input_string = $("#forminput").val();
+      $.ajax({
+          url : "/ajaxexample_json",
+          type : "POST",
+          dataType: "json",
+          data : {
+          client_response : input_string,
+          csrfmiddlewaretoken: '{{ csrf_token }}'
+        },
+      success : function(json) {
+        $('#result').append( 'Server Response: ' + json.server_response);
+      },
+      error : function(xhr,errmsg,err) {
+      alert(xhr.status + ": " + xhr.responseText);
+      }
+      });
+      return false;
+    });
+-->
+</body>
+</html>
