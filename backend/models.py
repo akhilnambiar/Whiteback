@@ -40,7 +40,7 @@ class UsersModel(models.Model):
             selected_choice = UsersModel.objects.get(user=username)
         except UsersModel.DoesNotExist:
             newuser = UsersModel()
-            newuser.user=username
+            newuser.user = username
             newuser.teacher = teacher
             newuser.school = school
             newuser.period = period
