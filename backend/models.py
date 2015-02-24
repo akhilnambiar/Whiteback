@@ -4,6 +4,7 @@ import StringIO
 import logging
 from django.db import IntegrityError
 
+
 class UsersModel(models.Model):
     user = models.CharField(unique=True, max_length=128)
     first_name = models.CharField(max_length=128, null=True)
@@ -13,27 +14,26 @@ class UsersModel(models.Model):
     period = models.IntegerField(null=True)
     email = models.CharField(max_length=128, unique=True, null=True)
 
-
     def login(self, username):
         try:
             selected_choice = UsersModel.objects.get(user=username)
         except UsersModel.DoesNotExist:
             errcode = -1
-            return [None,errcode,None,None]
+            return [None, errcode, None, None]
         else:
-            errcode=1
-            return [selected_choice.user,errcode,selected_choice.teacher,selected_choice.period]
+            errcode = 1
+            return [selected_choice.user, errcode, selected_choice.teacher, selected_choice.period]
 
-    #WARNING: We can take out this method. It can be deprecated
-    def get_user_id(self,username):
+    # WARNING: We can take out this method. It can be deprecated
+    def get_user_id(self, username):
         try:
             selected_choice = UsersModel.objects.get(user=username)
         except:
             errcode = -1
-            return [None,errcode]
+            return [None, errcode]
         else:
-            errcode=1
-            return[selected_choice.user,errcode]
+            errcode = 1
+            return[selected_choice.user, errcode]
 
     def add_user(self, username, school, teacher, period, first_name, last_name, email):
         try:
@@ -50,32 +50,36 @@ class UsersModel(models.Model):
             newuser.email = email
             newuser.save()
             errcode = 1
-            return [errcode,0]
+            return [errcode, 0]
         else:
-            #that user is already there
+            # that user is already there
             errcode = -1
-            return [errcode,0]
+            return [errcode, 0]
 
     def get_classmates(self, t, p):
         try:
-            selected_choice = UsersModel.objects.filter(teacher=t).filter(period=p)
+            selected_choice = UsersModel.objects.filter(
+                teacher=t).filter(period=p)
         except UsersModel.DoesNotExist:
-            return [None,None,None,-1]
-        #WE NEED TO WAIT FOR THE QUERY TO RETURN!
+            return [None, None, None, -1]
+        # WE NEED TO WAIT FOR THE QUERY TO RETURN!
         else:
-            first_names=[]
-            last_names=[]
+            first_names = []
+            last_names = []
             user_ids = []
             for x in selected_choice:
                 first_names.append(x.first_name)
                 last_names.append(x.last_name)
                 user_ids.append(x.user)
-            return [first_names,last_names,user_ids,1]
+            return [first_names, last_names, user_ids, 1]
+
 
 class InvitesModel(models.Model):
     user = models.CharField(max_length=128, null=True)
     invite_id = models.IntegerField(unique=True, null=True)
     handout = models.ForeignKey('HandoutModel')
+    inviter = models.CharField(max_length=128, null=True)
+    invitee = models.CharField(max_length=128, null=True)
 
     """
     This needs to be updated
@@ -83,51 +87,55 @@ class InvitesModel(models.Model):
         unique_together = ("user_id", "handout")
     """
 
-    def put_invite(self, u,h):
+    def put_invite(self, u, h, inviter, invitee):
         newinvite = InvitesModel()
         newinvite.user = u
         newinvite.invite_id = len(InvitesModel.objects.all())
         newinvite.handout = h
+        newinvite.inviter = inviter
+        newinvite.invitee = invitee
+
         try:
             newinvite.save()
             return 1
         except IntegrityError:
             return -1
 
-    #returns -1 if there are no items found, and 1 if items are found
-    def get_invite(self,u,t,p):
+    # returns -1 if there are no items found, and 1 if items are found
+    def get_invite(self, u, t, p):
         try:
             selected_choice = InvitesModel.objects.filter(user=u)
         except InvitesModel.DoesNotExist:
-            return [None,None,-1]
+            return [None, None, -1]
         else:
-            file_names=[]
-            dates=[]
+            file_names = []
+            dates = []
             for x in selected_choice:
-                x=x.handout
-                if (x.teacher==t and x.period==int(p)):
+                x = x.handout
+                if (x.teacher == t and x.period == int(p)):
                     file_names.append(x.file_name)
                     dates.append(str(x.date.date()))
-            return [file_names,dates,1]
-
+            return [file_names, dates, 1]
 
 
 class HandoutModel(models.Model):
-    #We aren't having teachers push out the files itself, once that happens we will use a File ID
+    # We aren't having teachers push out the files itself, once that happens
+    # we will use a File ID
     handout_id = models.IntegerField(unique=True, null=True)
-    teacher = models.CharField(max_length=128,  null=True)
+    teacher = models.CharField(max_length=128, null=True)
     period = models.IntegerField(null=True)
-    #this is the name of the file in Google Drive
-    file_name = models.CharField(max_length=128,  null=True)
+    file_name = models.CharField(max_length=128, null=True)
     date = models.DateTimeField(null=True)
 
     """
     @returns a list of handout objects (up to 3)
     if there are no handouts, it will return a handout List with 1 item [None]
     """
+
     def get_handouts(self, teacher, period):
         try:
-            selected_choice = HandoutModel.objects.filter(teacher=teacher,period=period).order_by('date')
+            selected_choice = HandoutModel.objects.filter(
+                teacher=teacher, period=period).order_by('date')
         except HandoutModel.DoesNotExist:
             return [None]
         else:
@@ -135,8 +143,8 @@ class HandoutModel(models.Model):
             i = 0
             for x in selected_choice:
                 result.append(x.file_name)
-                i+=1
-                if i==3:
+                i += 1
+                if i == 3:
                     break
             return result
 
@@ -145,7 +153,7 @@ class HandoutModel(models.Model):
             selected_choice = HandoutModel.objects.get(file_name=f)
         except HandoutModel.DoesNotExist:
             newhand = HandoutModel()
-            newhand.handout_id=len(HandoutModel.objects.all())
+            newhand.handout_id = len(HandoutModel.objects.all())
             newhand.teacher = t
             newhand.period = p
             newhand.file_name = f
@@ -154,7 +162,7 @@ class HandoutModel(models.Model):
             errcode = 1
             return errcode
         else:
-            #that handout is already there
+            # that handout is already there
             errcode = -1
             return errcode
 

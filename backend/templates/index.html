@@ -49,8 +49,10 @@
 <form action="send_invites/" method="POST">
   Send Invites
   {% csrf_token %}
-  user_id<input type="text" name="user_id" id="user_id">
-  file name<input type="text" name="file_name" id="file_name">
+  user_id<input type="text" name="user_id">
+  inviter<input type="text" name="inviter">
+  invitee<input type="text" name="invitee">
+  file name<input type="text" name="file_name">
   <input id="second-one2" type="submit" value="Get">
 </form>
 <form action="get_invites/" method="GET">
