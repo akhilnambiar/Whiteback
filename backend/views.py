@@ -81,8 +81,12 @@ def add_user(request):
     Request JSON:
     @username: The individual's username
     @school: The school the individual attends
+    @first_name: The first name of the user
+    @last_name: The last name of the user
     @teacher: The teacher of the primary user
     @period: The period that the student is attending that class (if applicable)
+    @email: The email address
+
 
     Logic:
     1) We just need to store this information in the database
@@ -253,23 +257,10 @@ def send_invites(request):
     """
     try:
         correct_data = dict(request.POST.iterlists())
-
         u = correct_data['user_id'][0]
         inviter = correct_data['inviter'][0]
         invitee = correct_data['invitee'][0]
         f = correct_data['file_name'][0]
-        # req = correct_data[0]
-        # inList = correct_data[1]
-        # if inList:
-        #     u = req['user_id'][0]
-        #     inviter = req['inviter'][0]
-        #     invitee = req['invitee'][0]
-        #     f = req['file_name'][0]
-        # else:
-        #     u = req.get('user_id', None)
-        #     inviter = req.get('inviter', None)
-        #     invitee = req.get('invitee', None)
-        #     f = req.get('file_name', None)
         db_model1 = HandoutModel()
         if f != "None":
             h = db_model1.get_handout_from_file_name(f)
