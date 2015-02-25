@@ -100,14 +100,25 @@ def add_user(request):
 
     ASSUMPTION: Currently we are assuming that we can't add people that aren't in the system
     """
-    req = dict(request.POST.iterlists())
-    username = req['username'][0]
-    school = req['school'][0]
-    first_name = req['first_name'][0]
-    last_name = req['last_name'][0]
-    teacher = req['teacher'][0]
-    period = req['period'][0]
-    email = req['email'][0]
+    correct_data = get_request_data(request)
+    req = correct_data[0]
+    inList = correct_data[1]
+    if inList:        
+        username = req['username'][0]
+        school = req['school'][0]
+        first_name = req['first_name'][0]
+        last_name = req['last_name'][0]
+        teacher = req['teacher'][0]
+        period = req['period'][0]
+        email = req['email'][0]
+    else:
+        username = req.get('username', None)
+        school = req.get('school', None)
+        first_name = req.get('first_name', None)
+        last_name = req.get('last_name', None)
+        teacher = req.get('teacher', None)
+        period = req.get('period', None)
+        email = req.get('email', None)
     db_model = UsersModel()
     # add_user will return a list of two items
     errcode = db_model.add_user(
@@ -256,11 +267,19 @@ def send_invites(request):
     TODO: We need to make sure for a given handout, the student and the period and stuff line up. It will work for now but we will need to fix it
     """
     try:
-        correct_data = dict(request.POST.iterlists())
-        u = correct_data['user_id'][0]
-        inviter = correct_data['inviter'][0]
-        invitee = correct_data['invitee'][0]
-        f = correct_data['file_name'][0]
+        correct_data = get_request_data(request)
+        req = correct_data[0]
+        inList = correct_data[1]
+        if inList:
+            u = req['user_id'][0]
+            inviter = req['inviter'][0]
+            invitee = req['invitee'][0]
+            f = req['file_name'][0]
+        else:
+            u = req.get('user_id', None)
+            inviter = req.get('inviter', None)
+            invitee = req.get('invitee', None)
+            f = req.get('file_name', None) 
         db_model1 = HandoutModel()
         if f != "None":
             h = db_model1.get_handout_from_file_name(f)
@@ -355,10 +374,11 @@ def findRoom(request):
 
 
 def get_request_data(request):
-    req = dict(request.GET.iterlists())
-    # if req == {}:
-    #   req = dict(request.POST.iterlists())
-    # What we get back from the dictionary is lists
+    if request.method == "GET":
+        req = dict(request.GET.iterlists())
+    else:
+        req = dict(request.POST.iterlists())
+
     if (req == {}):
         data = json.loads(request.body)
         return [data, False]
