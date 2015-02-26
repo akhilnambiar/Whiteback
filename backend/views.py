@@ -103,22 +103,22 @@ def add_user(request):
     correct_data = get_request_data(request)
     req = correct_data[0]
     inList = correct_data[1]
-    if inList:        
-        username = req['username'][0]
-        school = req['school'][0]
-        first_name = req['first_name'][0]
-        last_name = req['last_name'][0]
-        teacher = req['teacher'][0]
-        period = req['period'][0]
-        email = req['email'][0]
-    else:
-        username = req.get('username', None)
-        school = req.get('school', None)
-        first_name = req.get('first_name', None)
-        last_name = req.get('last_name', None)
-        teacher = req.get('teacher', None)
-        period = req.get('period', None)
-        email = req.get('email', None)
+    # if inList:        
+    #     username = req['username'][0]
+    #     school = req['school'][0]
+    #     first_name = req['first_name'][0]
+    #     last_name = req['last_name'][0]
+    #     teacher = req['teacher'][0]
+    #     period = req['period'][0]
+    #     email = req['email'][0]
+    # else:
+    username = req.get('username', None)
+    school = req.get('school', None)
+    first_name = req.get('first_name', None)
+    last_name = req.get('last_name', None)
+    teacher = req.get('teacher', None)
+    period = req.get('period', None)
+    email = req.get('email', None)
     db_model = UsersModel()
     # add_user will return a list of two items
     errcode = db_model.add_user(
