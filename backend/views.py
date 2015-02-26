@@ -100,9 +100,10 @@ def add_user(request):
 
     ASSUMPTION: Currently we are assuming that we can't add people that aren't in the system
     """
-    correct_data = get_request_data(request)
-    req = correct_data[0]
-    inList = correct_data[1]
+    # correct_data = get_request_data(request)
+    req = json.loads(request.body)
+    # req = correct_data[0]
+    # inList = correct_data[1]
     # if inList:        
     #     username = req['username'][0]
     #     school = req['school'][0]
