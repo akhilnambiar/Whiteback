@@ -374,6 +374,7 @@ def findRoom(request):
 
 
 def get_request_data(request):
+    req = {}
     if request.method == "GET":
         req = dict(request.GET.iterlists())
     else:
