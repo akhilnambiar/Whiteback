@@ -51,14 +51,8 @@ def login(request):
     @period:
     """
     try:
-        correct_data = get_request_data(request)
-        req = correct_data[0]
-        inList = correct_data[1]
-        if inList:
-            username = req['username'][0]
-        else:
-            username = req.get('username', None)
-        username = username
+        req = json.loads(request.body)
+        username = req.get('username', None)
         db_model = UsersModel()
         errcode = db_model.login(username)
         if errcode[1] == 1:
@@ -101,18 +95,8 @@ def add_user(request):
     ASSUMPTION: Currently we are assuming that we can't add people that aren't in the system
     """
     # correct_data = get_request_data(request)
+
     req = json.loads(request.body)
-    # req = correct_data[0]
-    # inList = correct_data[1]
-    # if inList:        
-    #     username = req['username'][0]
-    #     school = req['school'][0]
-    #     first_name = req['first_name'][0]
-    #     last_name = req['last_name'][0]
-    #     teacher = req['teacher'][0]
-    #     period = req['period'][0]
-    #     email = req['email'][0]
-    # else:
     username = req.get('username', None)
     school = req.get('school', None)
     first_name = req.get('first_name', None)
@@ -127,6 +111,18 @@ def add_user(request):
     res = {'errcode': errcode[0], 'count': errcode[1]}
     return HttpResponse(json.dumps(res), content_type='application/json')
 
+    # req = correct_data[0]
+    # inList = correct_data[1]
+    # if inList:        
+    #     username = req['username'][0]
+    #     school = req['school'][0]
+    #     first_name = req['first_name'][0]
+    #     last_name = req['last_name'][0]
+    #     teacher = req['teacher'][0]
+    #     period = req['period'][0]
+    #     email = req['email'][0]
+    # else:
+
 
 @csrf_exempt
 def put_handout(request):
@@ -140,10 +136,10 @@ def put_handout(request):
     Return JSON
     @errcode: 1 if success -1 if failed
     """
-    req = dict(request.POST.iterlists())
-    file_name = req['file_name'][0]
-    teacher = req['teacher'][0]
-    period = req['period'][0]
+    req = json.loads(request.body)
+    file_name = req.get('file_name', None)
+    teacher = req.get('teacher', None)
+    period  = req.get('period', None)
     db_model = HandoutModel()
     # add_user will return a list of two items
     errcode = db_model.put_handout(teacher, period, file_name)
@@ -179,20 +175,10 @@ def get_handouts(request):
     Note: We won't provide them with URLs, but if the account is a test account, we need to make a call to find handouts
     """
     try:
-        correct_data = get_request_data(request)
-        req = correct_data[0]
-        inList = correct_data[1]
-        if inList:
-            teacher = req['teacher'][0]
-            period = req['period'][0]
-        else:
-            teacher = req.get('teacher', None)
-            period = req.get('period', None)
+        req = json.loads(request.body)
+        teacher = req.get('teacher', None)
+        period = req.get('period', None)
         res = {'errcode': -2, 'file_name': None}
-        req = dict(request.GET.iterlists())
-        print(request)
-        print(req)
-        # add_user will return a list of two items
         db_model = HandoutModel()
         handout = db_model.get_handouts(teacher, period)
         # the first item shouldn't be None, if it is, there is an error
@@ -224,15 +210,9 @@ def get_classmates(request):
     @user_id: A list of the corresponding user_ids (used to send invites later)
     """
     try:
-        correct_data = get_request_data(request)
-        req = correct_data[0]
-        inList = correct_data[1]
-        if inList:
-            teacher = req['teacher'][0]
-            period = req['period'][0]
-        else:
-            teacher = req.get('teacher', None)
-            period = req.get('period', None)
+        req = json.loads(request.body)
+        teacher = req.get('teacher', None)
+        period = req.get('period', None)
         db_model = UsersModel()
         # add_user will return a list of three items
         result = db_model.get_classmates(teacher, period)
@@ -268,19 +248,11 @@ def send_invites(request):
     TODO: We need to make sure for a given handout, the student and the period and stuff line up. It will work for now but we will need to fix it
     """
     try:
-        correct_data = get_request_data(request)
-        req = correct_data[0]
-        inList = correct_data[1]
-        if inList:
-            u = req['user_id'][0]
-            inviter = req['inviter'][0]
-            invitee = req['invitee'][0]
-            f = req['file_name'][0]
-        else:
-            u = req.get('user_id', None)
-            inviter = req.get('inviter', None)
-            invitee = req.get('invitee', None)
-            f = req.get('file_name', None) 
+        req = json.loads(request.body)
+        u = req.get('user_id', None)
+        inviter = req.get('inviter', None)
+        invitee = req.get('invitee', None)
+        f = req.get('file_name', None) 
         db_model1 = HandoutModel()
         if f != "None":
             h = db_model1.get_handout_from_file_name(f)
@@ -317,18 +289,10 @@ def get_invites(request):
     @date: A list of all of the date
     """
     try:
-        req = dict(request.GET.iterlists())
-        correct_data = get_request_data(request)
-        req = correct_data[0]
-        inList = correct_data[1]
-        if inList:
-            u = req['user_id'][0]
-            f = req['teacher'][0]
-            p = req['period'][0]
-        else:
-            u = req.get('user_id', None)
-            f = req.get('teacher', None)
-            p = req.get('period', None)
+        req = json.loads(request.body)
+        u = req.get('user_id', None)
+        f = req.get('teacher', None)
+        p = req.get('period', None)
         db_model = InvitesModel()
         errcode = db_model.get_invite(u, f, p)
         if errcode[2] == -1:
