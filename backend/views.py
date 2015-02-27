@@ -16,6 +16,7 @@ import simplejson
 # NOTE: Assumption, that we are only supporting one school right now
 # NOTE: We will need to think about data purging (when do we remove
 # handouts and invites etc)
+# edit for heroku push
 
 
 def index(request):
