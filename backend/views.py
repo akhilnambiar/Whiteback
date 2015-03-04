@@ -7,6 +7,7 @@ from ast import literal_eval
 from backend.models import UsersModel, HandoutModel, InvitesModel
 import json
 import logging
+import ast
 import urllib2
 import simplejson
 
@@ -176,7 +177,10 @@ def get_handouts(request):
     Note: We won't provide them with URLs, but if the account is a test account, we need to make a call to find handouts
     """
     try:
-        req = json.loads(request.body)
+        try:
+            req = json.loads(request.body)
+        except ValueError:
+            req = dict(ast.literal_eval(json.dumps(request.GET)))
         teacher = req.get('teacher', None)
         period = req.get('period', None)
         res = {'errcode': -2, 'file_name': None}
@@ -190,7 +194,8 @@ def get_handouts(request):
         return HttpResponse(json.dumps(res), content_type='application/json')
     except Exception, ex:
         logging.exception("Something awful happened!")
-        return HttpResponse(json.dumps(res), content_type='application/json')
+        return HttpResponse("Something awful happened!")
+        # return HttpResponse(json.dumps(res), content_type='application/json')
 
 
 @csrf_exempt
