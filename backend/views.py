@@ -188,7 +188,7 @@ def get_handouts(request):
         handout = db_model.get_handouts(teacher, period)
         # the first item shouldn't be None, if it is, there is an error
         if handout[0] == None:
-            res = {'errcode': -1, 'file_name': None}
+            res = {'errcode': -1, 'file_name': []}
         else:
             res = {'errcode': 1, 'file_name': handout}
         return HttpResponse(json.dumps(res), content_type='application/json')
