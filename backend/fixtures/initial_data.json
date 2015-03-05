@@ -155,7 +155,7 @@
       "due_date": "4/1/15",
       "push_date": "3/25/15",
       "gid": "0B_5Kb3gNlJ2TZlpObi12U09ENGc",
-      "user_ids" :["13064207629808502026","6"]
+      "user_ids" :fill
     }
   },
   {
@@ -169,7 +169,7 @@
       "due_date": "4/1/15",
       "push_date": "3/25/15",
       "gid": "0B_5Kb3gNlJ2Tc21ScGxER0NjZ1E",
-      "user_ids" :["13064207629808502026","5"]
+      "user_ids" :fill
     }
   },
   {
@@ -183,7 +183,7 @@
       "due_date": "4/1/15",
       "push_date": "3/25/15",
       "gid": "0B_5Kb3gNlJ2TXzhCa3FFX3FOdkk",
-      "user_ids" :["13064207629808502026","2","3"]
+      "user_ids" :FILL
     }
   },
   {
@@ -249,8 +249,16 @@
       "thumbnailLink":"https://lh6.googleusercontent.com/WwbLApchWTkK3e-PJ49x9YBVgcWp9OkfIqvWUBPkFVpNbvhkVuhnMQeJdaUmQc7OOBShsQ=s220",
     }
   },
-
-
+  {
+    "model": "backend.HandoutModel",
+    "pk": 22,
+    "fields": {
+      "gid":"0B_5Kb3gNlJ2TM1ZoeXlyWG5fS0U",
+      "title":"english_worksheet",
+      "thumbnailLink":"https://lh6.googleusercontent.com/WwbLApchWTkK3e-PJ49x9YBVgcWp9OkfIqvWUBPkFVpNbvhkVuhnMQeJdaUmQc7OOBShsQ=s220",
+    }
+  },
+SAVEPOINT: FIX THE HANDOUTS MODEL
 ]
 
 
