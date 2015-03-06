@@ -73,6 +73,52 @@ class UsersModel(models.Model):
                 user_ids.append(x.user)
             return [first_names, last_names, user_ids, 1]
 
+class TeacherModel(models.Model):
+    user_id = models.CharField(max_length=128, null=True)
+    first_name = models.CharField(max_length=128, null=True)
+    last_name = models.CharField(max_length=128, null=True)
+    school = models.CharField(max_length=128, null=True)
+    period = models.CharField(max_length=128, null=True)
+    email = models.CharField(max_length=128, null=True)
+
+    def login(self, username):
+        try:
+            selected_choice = TeacherModel.objects.get(user_id=username)
+        except UsersModel.DoesNotExist:
+            errcode = -1
+            return [None, errcode, None, None]
+        else:
+            errcode = 1
+            return [selected_choice.user_id, errcode, selected_choice.first_name, selected_choice.period]
+
+    def get_teacher_id(self, username):
+        try:
+            selected_choice = TeacherModel.objects.get(user_id=username)
+        except:
+            errcode = -1
+            return [None, errcode]
+        else:
+            errcode = 1
+            return[selected_choice.user_id, errcode]
+
+    def add_teacher(self, username, first_name, last_name, school, period, email):
+        try:
+            selected_choice = TeacherModel.objects.get(user_id=username)
+        except UsersModel.DoesNotExist:
+            newuser = UsersModel()
+            newuser.user_id = username
+            newuser.first_name = first_name
+            newuser.last_name = last_name
+            newuser.school = school
+            newuser.period = period
+            newuser.email = email
+            newuser.save()
+            errcode = 1
+            return [errcode, 0]
+        else:
+            # that user is already there
+            errcode = -1
+            return [errcode, 0]
 
 class InvitesModel(models.Model):
     user = models.CharField(max_length=128, null=True)
@@ -125,7 +171,10 @@ class HandoutModel(models.Model):
     teacher = models.CharField(max_length=128, null=True)
     period = models.IntegerField(null=True)
     file_name = models.CharField(max_length=128, null=True)
-    date = models.DateTimeField(null=True)
+    due_date = models.DateTimeField(null=True)
+    push_date = models.DateTimeField(null=True)
+    google_identifier = models.CharField(max_length=128, null=True)
+    invite_id = models.CharField(max_length=128, null=True)
 
     """
     @returns a list of handout objects (up to 3)
@@ -135,7 +184,7 @@ class HandoutModel(models.Model):
     def get_handouts(self, teacher, period):
         try:
             selected_choice = HandoutModel.objects.filter(
-                teacher=teacher, period=period).order_by('date')
+                teacher=teacher, period=period).order_by('due_date')
         except HandoutModel.DoesNotExist:
             return [None]
         else:
@@ -157,7 +206,7 @@ class HandoutModel(models.Model):
             newhand.teacher = t
             newhand.period = p
             newhand.file_name = f
-            newhand.date = datetime.datetime.now()
+            newhand.due_date = datetime.datetime.now()
             newhand.save()
             errcode = 1
             return errcode
