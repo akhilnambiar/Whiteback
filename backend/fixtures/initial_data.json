@@ -1,0 +1,435 @@
+[
+  {
+    "model": "backend.UsersModel",
+    "pk": 1,
+    "fields": {
+      "user": "1",
+      "first_name": "John",
+      "last_name": "Lennon",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.jlen@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 2,
+    "fields": {
+      "user": "2",
+      "first_name": "George",
+      "last_name": "Costanza",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.gcos@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 3,
+    "fields": {
+      "user": "3",
+      "first_name": "Rob",
+      "last_name": "Stark",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.rsta@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 4,
+    "fields": {
+      "user": "4",
+      "first_name": "Spike",
+      "last_name": "Jet",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.sjet@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 5,
+    "fields": {
+      "user": "5",
+      "first_name": "Derrick",
+      "last_name": "Rose",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.dros@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 6,
+    "fields": {
+      "user": "6",
+      "first_name": "James",
+      "last_name": "Rodriguez",
+      "teacher": ["t0"],
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.jrod@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 7,
+    "fields": {
+      "user": "13064207629808502026",
+      "first_name": "Akhil",
+      "last_name": "Nambiar",
+      "teacher": ["t2","t0","t1"],
+      "school": "Wm Fremd High School",
+      "period": [1,4,6],
+      "email": "classboard711@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 8,
+    "fields": {
+      "user": "7",
+      "first_name": "Joakim",
+      "last_name": "Noah",
+      "teacher": ["t0", "t1"],
+      "school": "Wm Fremd High School",
+      "period": [4,8],
+      "email": "classboard.jnoa@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 9,
+    "fields": {
+      "user": "8",
+      "first_name": "Erwin",
+      "last_name": "Smith",
+      "teacher": ["t1"],
+      "school": "Wm Fremd High School",
+      "period": [6],
+      "email": "classboard.esmi@gmail.com"
+    }
+  },
+  {
+    "model": "backend.UsersModel",
+    "pk": 10,
+    "fields": {
+      "user": "9",
+      "first_name": "Sterling",
+      "last_name": "Archer",
+      "teacher": "[t1]",
+      "school": "Wm Fremd High School",
+      "period": [8],
+      "email": "classboard.sarc@gmail.com"
+    }
+  },
+  {
+    "model": "backend.TeacherModel",
+    "pk": 1,
+    "fields": {
+      "user_id": "t0",
+      "first_name": "Jane",
+      "last_name": "Aldrin",
+      "school": "Wm Fremd High School",
+      "period": [4],
+      "email": "classboard.teacher@gmail.com"
+    }
+  },
+  {
+    "model": "backend.TeacherModel",
+    "pk": 2,
+    "fields": {
+      "user_id": "t1",
+      "first_name": "Marissa",
+      "last_name": "Tomazoski",
+      "school": "Wm Fremd High School",
+      "period": [6,8],
+      "email": "classboard.teacher2@gmail.com"
+    }
+  },
+  {
+    "model": "backend.TeacherModel",
+    "pk": 3,
+    "fields": {
+      "user_id": "t2",
+      "first_name": "Rob",
+      "last_name": "Hanson",
+      "school": "Wm Fremd High School",
+      "period": [1,3,5,7],
+      "email": "classboard.teacher3@gmail.com"
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 1,
+    "fields": {
+      "handout_id": "h0",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "addition_worksheet",
+      "due_date": "2015-05-23 19:55:32.124884-08",
+      "push_date": null,
+      "google_id": "0B_5Kb3gNlJ2TeW1oSlRaQU1FdTA",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 2,
+    "fields": {
+      "handout_id": "h1",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "division_worksheet",
+      "due_date": "2015-05-18 19:55:32.124884-08",
+      "push_date": null,
+      "google_id": "0B_5Kb3gNlJ2TNjFzZU9wQTJHVDA",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 3,
+    "fields": {
+      "handout_id": "h2",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "english_worksheet",
+      "due_date": "2015-05-11 19:55:32.124884-08",
+      "push_date": null,
+      "google_id": "0B_5Kb3gNlJ2TM1ZoeXlyWG5fS0U",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 4,
+    "fields": {
+      "handout_id": "h3",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "LetterA.pdf",
+      "due_date": "2015-05-01 19:55:32.124884-08",
+      "push_date": "2015-04-23 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2TZlpObi12U09ENGc",
+      "invite_id" :"i1"
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 5,
+    "fields": {
+      "handout_id": "h4",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "LetterB.pdf",
+      "due_date": "2015-05-02 19:55:32.124884-08",
+      "push_date": "2015-04-23 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2Tc21ScGxER0NjZ1E",
+      "invite_id" :"i2"
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 6,
+    "fields": {
+      "handout_id": "h5",
+      "teacher": "t0",
+      "period": 4,
+      "file_name": "LetterC.pdf",
+      "due_date": "2015-05-03 19:55:32.124884-08",
+      "push_date": "2015-04-02 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2TXzhCa3FFX3FOdkk",
+      "invite_id" :"i0"
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 7,
+    "fields": {
+      "handout_id": "h6",
+      "teacher": "t1",
+      "period": 8,
+      "file_name": "1-short_vowels.pdf",
+      "due_date": "2015-05-04 19:55:32.124884-08",
+      "push_date": "2015-04-28 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2Tc0J5c3FIdjZrZDQ",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 8,
+    "fields": {
+      "handout_id": "h7",
+      "teacher": "t1",
+      "period": 8,
+      "file_name": "3-short-vowels.pdf",
+      "due_date": "2015-05-05 19:55:32.124884-08",
+      "push_date": "2015-04-28 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2TcVhRYTBiUTlvY2M",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 9,
+    "fields": {
+      "handout_id": "h8",
+      "teacher": "t1",
+      "period": 8,
+      "file_name": "2-short-vowels.pdf",
+      "due_date": "2015-05-06 19:55:32.124884-08",
+      "push_date": "2015-04-28 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2TYjZkNzlOeUM4bXc",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.HandoutModel",
+    "pk": 10,
+    "fields": {
+      "handout_id": "h9",
+      "teacher": "t1",
+      "period": 4,
+      "file_name": "4-short-vowels.pdf",
+      "due_date": "2015-05-07 19:55:32.124884-08",
+      "push_date": "2015-04-28 19:55:32.124884-08",
+      "google_id": "0B_5Kb3gNlJ2TU0lNckx1eFloQWM",
+      "invite_id" :null
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 1,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TXzhCa3FFX3FOdkk",
+      "title":"LetterC.pdf",
+      "thumbnailLink":"https://lh4.googleusercontent.com/SSWcKQy2pBmoVl7CxjgF7qEa-z17H7oEhaq3L8IEm-Y6N-RfTMhVke4ZHReYqMjjcn_GgA=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 2,
+    "fields": {
+      "google_id":,"0B_5Kb3gNlJ2Tc21ScGxER0NjZ1E"
+      "title":"LetterB.pdf",
+      "thumbnailLink":"https://lh6.googleusercontent.com/dPq8_VTGIjH5FIGSG7_sFzTDeJUk_uxukbG2mcBFEIk4LCmu1hVEQRGcbVqgeS2IQ4zysw=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 3,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TZlpObi12U09ENGc",
+      "title":"LetterA.pdf",
+      "thumbnailLink":"https://lh4.googleusercontent.com/uTp-XFsoH-eVNV1Nsrkaa6kzPhY0vl-KgY6gsdNlkC1krdjMb1Y5UVwwNClaDVwZ2EONeg=s220"
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 4,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TNjFzZU9wQTJHVDA",
+      "title":"division_worksheet",
+      "thumbnailLink":"https://lh6.googleusercontent.com/XdR0ZXFOwTv_CHWhhBSP74sOeKaTLQKmbqaiIGBPzF4SActzvoBAThDZ4PfmG7lSGteq5Q=s220"
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 5,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TeW1oSlRaQU1FdTA",
+      "title":"addition_worksheet",
+      "thumbnailLink":"https://lh4.googleusercontent.com/n6qRIsSRQY4K5SxeiXDLxXQRhA_jCJBiiKTqJqZcggti1eJC2-CQg-wmOrlLjRsB3VU2XQ=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 6,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TM1ZoeXlyWG5fS0U",
+      "title":"english_worksheet",
+      "thumbnailLink":"https://lh6.googleusercontent.com/WwbLApchWTkK3e-PJ49x9YBVgcWp9OkfIqvWUBPkFVpNbvhkVuhnMQeJdaUmQc7OOBShsQ=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 7,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2Tc0J5c3FIdjZrZDQ",
+      "title":"1-short_vowels.pdf",
+      "thumbnailLink":"https://lh5.googleusercontent.com/8Y3-WUoM4eatZqzjRL41on4ve2tvItioH2Y91rEtlcTYh8c3NSfQ7FXd4GKcG_NJxUbTIw=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 8,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TcVhRYTBiUTlvY2M",
+      "title":"3-short-vowels.pdf",
+      "thumbnailLink":"https://lh4.googleusercontent.com/o5h4r3YjG9t2zTrFMvSTX-WNDqkw-JkqBxQEGO74oDA16yjeSJ1tMxoIneaX2kVNzaWmnQ=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 9,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TYjZkNzlOeUM4bXc",
+      "title":"2-short-vowels.pdf",
+      "thumbnailLink":"https://lh6.googleusercontent.com/3QpcR46WoLrK2nGuTEAfg1Yl0Dq2XZT7IKJzR1bCI2GjkMzZA0hBP8XufN5_pIpjTyT-_A=s220",
+    }
+  },
+  {
+    "model": "backend.GTLFiles",
+    "pk": 10,
+    "fields": {
+      "google_id":"0B_5Kb3gNlJ2TU0lNckx1eFloQWM",
+      "title":"4-short-vowels.pdf",
+      "thumbnailLink":"https://lh3.googleusercontent.com/-wjLnbJsTrOiImKxcP7YvAnTrBWw74JJ6llx29jIzm3H2kTM4SzanGaPgqYxQCno7E0ieg=s220",
+    }
+  },
+  {
+    "model": "backend.InvitesModel",
+    "pk": 1,
+    "fields": {
+      "inviter":"5",
+      "invitee":"[13064207629808502026]",
+      "invite_id":"i0",
+      "handout_id":"h5",
+    }
+  },
+  {
+    "model": "backend.InvitesModel",
+    "pk": 2,
+    "fields": {
+      "inviter":"6",
+      "invitee":"[13064207629808502026, 3]",
+      "invite_id":"i1",
+      "handout_id":"h3",
+    }
+  },
+  {
+    "model": "backend.InvitesModel",
+    "pk": 3,
+    "fields": {
+      "inviter":"13064207629808502026",
+      "invitee":"[2, 3]",
+      "invite_id":"i2",
+      "handout_id":"h4",
+    }
+  },
+//SAVEPOINT: Add invites model seeding. Add new layout to product backlog (New, Existing, Documents, Invites)
+]
+/*
+title:1-short_vowels.pdf, gid:0B_5Kb3gNlJ2Tc0J5c3FIdjZrZDQ, thumbnailLink:https://lh5.googleusercontent.com/8Y3-WUoM4eatZqzjRL41on4ve2tvItioH2Y91rEtlcTYh8c3NSfQ7FXd4GKcG_NJxUbTIw=s220,
+title:3-short-vowels.pdf, gid:0B_5Kb3gNlJ2TcVhRYTBiUTlvY2M, thumbnailLink:https://lh4.googleusercontent.com/o5h4r3YjG9t2zTrFMvSTX-WNDqkw-JkqBxQEGO74oDA16yjeSJ1tMxoIneaX2kVNzaWmnQ=s220,
+title:2-short-vowels.pdf, gid:0B_5Kb3gNlJ2TYjZkNzlOeUM4bXc, thumbnailLink:https://lh6.googleusercontent.com/3QpcR46WoLrK2nGuTEAfg1Yl0Dq2XZT7IKJzR1bCI2GjkMzZA0hBP8XufN5_pIpjTyT-_A=s220,
+title:4-short-vowels.pdf, gid:0B_5Kb3gNlJ2TU0lNckx1eFloQWM, thumbnailLink:https://lh3.googleusercontent.com/-wjLnbJsTrOiImKxcP7YvAnTrBWw74JJ6llx29jIzm3H2kTM4SzanGaPgqYxQCno7E0ieg=s220,
+*/
