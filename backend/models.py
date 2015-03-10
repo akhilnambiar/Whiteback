@@ -2,16 +2,46 @@ from django.db import models
 import datetime
 import StringIO
 import logging
+import ast
 from django.db import IntegrityError
+
+# field for having the model take in a list for processing
+# Credits to jathanism on StackOverflow
+# http://stackoverflow.com/questions/5216162/how-to-create-list-field-in-django
+
+class ListField(models.TextField):
+    __metaclass__ = models.SubfieldBase
+    description = "Stores a python list"
+
+    def __init__(self, *args, **kwargs):
+        super(ListField, self).__init__(*args, **kwargs)
+
+    def to_python(self, value):
+        if not value:
+            value = []
+
+        if isinstance(value, list):
+            return value
+        return ast.literal_eval(value)
+
+    def get_prep_value(self, value):
+        if value is None:
+            return value
+        return unicode(value)
+
+    def value_to_string(self, obj):
+        value = self._get_val_from_obj(obj)
+        return self.get_db_prep_value(value)
 
 
 class UsersModel(models.Model):
     user = models.CharField(unique=True, max_length=128)
     first_name = models.CharField(max_length=128, null=True)
     last_name = models.CharField(max_length=128, null=True)
-    teacher = models.CharField(max_length=128, null=True)
+    teacher = ListField(null=True)
+    # teacher = models.CharField(max_length=128, null=True)
     school = models.CharField(max_length=128, null=True)
-    period = models.IntegerField(null=True)
+    period = ListField(null=True)
     email = models.CharField(max_length=128, unique=True, null=True)
 
     def login(self, username):
@@ -73,12 +103,13 @@ class UsersModel(models.Model):
                 user_ids.append(x.user)
             return [first_names, last_names, user_ids, 1]
 
+
 class TeacherModel(models.Model):
     user_id = models.CharField(max_length=128, null=True)
     first_name = models.CharField(max_length=128, null=True)
     last_name = models.CharField(max_length=128, null=True)
     school = models.CharField(max_length=128, null=True)
-    period = models.CharField(max_length=128, null=True)
+    period = ListField(null=True)
     email = models.CharField(max_length=128, null=True)
 
     def login(self, username):
@@ -120,12 +151,13 @@ class TeacherModel(models.Model):
             errcode = -1
             return [errcode, 0]
 
+
 class InvitesModel(models.Model):
     user = models.CharField(max_length=128, null=True)
-    invite_id = models.IntegerField(unique=True, null=True)
-    handout = models.ForeignKey('HandoutModel')
+    invite_id = models.CharField(max_length=128, null=True)
+    handout_id = models.CharField(max_length=128, null=True)
     inviter = models.CharField(max_length=128, null=True)
-    invitee = models.CharField(max_length=128, null=True)
+    invitee = ListField(null=True)
 
     """
     This needs to be updated
@@ -167,13 +199,13 @@ class InvitesModel(models.Model):
 class HandoutModel(models.Model):
     # We aren't having teachers push out the files itself, once that happens
     # we will use a File ID
-    handout_id = models.IntegerField(unique=True, null=True)
+    handout_id = models.CharField(max_length=128, null=True)
     teacher = models.CharField(max_length=128, null=True)
     period = models.IntegerField(null=True)
     file_name = models.CharField(max_length=128, null=True)
     due_date = models.DateTimeField(null=True)
     push_date = models.DateTimeField(null=True)
-    google_identifier = models.CharField(max_length=128, null=True)
+    google_id = models.CharField(max_length=128, null=True)
     invite_id = models.CharField(max_length=128, null=True)
 
     """
@@ -222,3 +254,8 @@ class HandoutModel(models.Model):
             return None
         else:
             return selected_choice
+
+class GTLFiles(models.Model):
+    google_id = models.CharField(max_length=128, null=True)
+    title = models.CharField(max_length=128, null=True)
+    thumbnailLink = models.CharField(max_length=128, null=True)

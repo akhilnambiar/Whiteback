@@ -123,7 +123,7 @@
       "user": "9",
       "first_name": "Sterling",
       "last_name": "Archer",
-      "teacher": "[t1]",
+      "teacher": ["t1"],
       "school": "Wm Fremd High School",
       "period": [8],
       "email": "classboard.sarc@gmail.com"
@@ -311,16 +311,16 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TXzhCa3FFX3FOdkk",
       "title":"LetterC.pdf",
-      "thumbnailLink":"https://lh4.googleusercontent.com/SSWcKQy2pBmoVl7CxjgF7qEa-z17H7oEhaq3L8IEm-Y6N-RfTMhVke4ZHReYqMjjcn_GgA=s220",
+      "thumbnailLink":"https://lh4.googleusercontent.com/SSWcKQy2pBmoVl7CxjgF7qEa-z17H7oEhaq3L8IEm-Y6N-RfTMhVke4ZHReYqMjjcn_GgA=s220"
     }
   },
   {
     "model": "backend.GTLFiles",
     "pk": 2,
     "fields": {
-      "google_id":,"0B_5Kb3gNlJ2Tc21ScGxER0NjZ1E"
+      "google_id":"0B_5Kb3gNlJ2Tc21ScGxER0NjZ1E",
       "title":"LetterB.pdf",
-      "thumbnailLink":"https://lh6.googleusercontent.com/dPq8_VTGIjH5FIGSG7_sFzTDeJUk_uxukbG2mcBFEIk4LCmu1hVEQRGcbVqgeS2IQ4zysw=s220",
+      "thumbnailLink":"https://lh6.googleusercontent.com/dPq8_VTGIjH5FIGSG7_sFzTDeJUk_uxukbG2mcBFEIk4LCmu1hVEQRGcbVqgeS2IQ4zysw=s220"
     }
   },
   {
@@ -347,7 +347,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TeW1oSlRaQU1FdTA",
       "title":"addition_worksheet",
-      "thumbnailLink":"https://lh4.googleusercontent.com/n6qRIsSRQY4K5SxeiXDLxXQRhA_jCJBiiKTqJqZcggti1eJC2-CQg-wmOrlLjRsB3VU2XQ=s220",
+      "thumbnailLink":"https://lh4.googleusercontent.com/n6qRIsSRQY4K5SxeiXDLxXQRhA_jCJBiiKTqJqZcggti1eJC2-CQg-wmOrlLjRsB3VU2XQ=s220"
     }
   },
   {
@@ -356,7 +356,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TM1ZoeXlyWG5fS0U",
       "title":"english_worksheet",
-      "thumbnailLink":"https://lh6.googleusercontent.com/WwbLApchWTkK3e-PJ49x9YBVgcWp9OkfIqvWUBPkFVpNbvhkVuhnMQeJdaUmQc7OOBShsQ=s220",
+      "thumbnailLink":"https://lh6.googleusercontent.com/WwbLApchWTkK3e-PJ49x9YBVgcWp9OkfIqvWUBPkFVpNbvhkVuhnMQeJdaUmQc7OOBShsQ=s220"
     }
   },
   {
@@ -365,7 +365,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2Tc0J5c3FIdjZrZDQ",
       "title":"1-short_vowels.pdf",
-      "thumbnailLink":"https://lh5.googleusercontent.com/8Y3-WUoM4eatZqzjRL41on4ve2tvItioH2Y91rEtlcTYh8c3NSfQ7FXd4GKcG_NJxUbTIw=s220",
+      "thumbnailLink":"https://lh5.googleusercontent.com/8Y3-WUoM4eatZqzjRL41on4ve2tvItioH2Y91rEtlcTYh8c3NSfQ7FXd4GKcG_NJxUbTIw=s220"
     }
   },
   {
@@ -374,7 +374,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TcVhRYTBiUTlvY2M",
       "title":"3-short-vowels.pdf",
-      "thumbnailLink":"https://lh4.googleusercontent.com/o5h4r3YjG9t2zTrFMvSTX-WNDqkw-JkqBxQEGO74oDA16yjeSJ1tMxoIneaX2kVNzaWmnQ=s220",
+      "thumbnailLink":"https://lh4.googleusercontent.com/o5h4r3YjG9t2zTrFMvSTX-WNDqkw-JkqBxQEGO74oDA16yjeSJ1tMxoIneaX2kVNzaWmnQ=s220"
     }
   },
   {
@@ -383,7 +383,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TYjZkNzlOeUM4bXc",
       "title":"2-short-vowels.pdf",
-      "thumbnailLink":"https://lh6.googleusercontent.com/3QpcR46WoLrK2nGuTEAfg1Yl0Dq2XZT7IKJzR1bCI2GjkMzZA0hBP8XufN5_pIpjTyT-_A=s220",
+      "thumbnailLink":"https://lh6.googleusercontent.com/3QpcR46WoLrK2nGuTEAfg1Yl0Dq2XZT7IKJzR1bCI2GjkMzZA0hBP8XufN5_pIpjTyT-_A=s220"
     }
   },
   {
@@ -392,7 +392,7 @@
     "fields": {
       "google_id":"0B_5Kb3gNlJ2TU0lNckx1eFloQWM",
       "title":"4-short-vowels.pdf",
-      "thumbnailLink":"https://lh3.googleusercontent.com/-wjLnbJsTrOiImKxcP7YvAnTrBWw74JJ6llx29jIzm3H2kTM4SzanGaPgqYxQCno7E0ieg=s220",
+      "thumbnailLink":"https://lh3.googleusercontent.com/-wjLnbJsTrOiImKxcP7YvAnTrBWw74JJ6llx29jIzm3H2kTM4SzanGaPgqYxQCno7E0ieg=s220"
     }
   },
   {
@@ -400,9 +400,9 @@
     "pk": 1,
     "fields": {
       "inviter":"5",
-      "invitee":"[13064207629808502026]",
+      "invitee":["13064207629808502026"],
       "invite_id":"i0",
-      "handout_id":"h5",
+      "handout_id":"h5"
     }
   },
   {
@@ -410,9 +410,9 @@
     "pk": 2,
     "fields": {
       "inviter":"6",
-      "invitee":"[13064207629808502026, 3]",
+      "invitee":["13064207629808502026", "3"],
       "invite_id":"i1",
-      "handout_id":"h3",
+      "handout_id":"h3"
     }
   },
   {
@@ -420,16 +420,9 @@
     "pk": 3,
     "fields": {
       "inviter":"13064207629808502026",
-      "invitee":"[2, 3]",
+      "invitee":["2", "3"],
       "invite_id":"i2",
-      "handout_id":"h4",
+      "handout_id":"h4"
     }
-  },
-//SAVEPOINT: Add invites model seeding. Add new layout to product backlog (New, Existing, Documents, Invites)
+  }
 ]
-/*
-title:1-short_vowels.pdf, gid:0B_5Kb3gNlJ2Tc0J5c3FIdjZrZDQ, thumbnailLink:https://lh5.googleusercontent.com/8Y3-WUoM4eatZqzjRL41on4ve2tvItioH2Y91rEtlcTYh8c3NSfQ7FXd4GKcG_NJxUbTIw=s220,
-title:3-short-vowels.pdf, gid:0B_5Kb3gNlJ2TcVhRYTBiUTlvY2M, thumbnailLink:https://lh4.googleusercontent.com/o5h4r3YjG9t2zTrFMvSTX-WNDqkw-JkqBxQEGO74oDA16yjeSJ1tMxoIneaX2kVNzaWmnQ=s220,
-title:2-short-vowels.pdf, gid:0B_5Kb3gNlJ2TYjZkNzlOeUM4bXc, thumbnailLink:https://lh6.googleusercontent.com/3QpcR46WoLrK2nGuTEAfg1Yl0Dq2XZT7IKJzR1bCI2GjkMzZA0hBP8XufN5_pIpjTyT-_A=s220,
-title:4-short-vowels.pdf, gid:0B_5Kb3gNlJ2TU0lNckx1eFloQWM, thumbnailLink:https://lh3.googleusercontent.com/-wjLnbJsTrOiImKxcP7YvAnTrBWw74JJ6llx29jIzm3H2kTM4SzanGaPgqYxQCno7E0ieg=s220,
-*/
