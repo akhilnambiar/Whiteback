@@ -22,7 +22,7 @@ class HandoutModelTestCase(TestCase):
     	due_date = push_date = timezone.now()
         HandoutModel.objects.create(
             handout_id=11021994, teacher="Mr. Banks", period=4, file_name="testing",
-            due_date=due_date, push_date=push_date, google_identifier="google", invite_id="id")
+            due_date=due_date, push_date=push_date, google_id="google", invite_id="id")
 
     def test_sanity_test(self):
         test_user = HandoutModel.objects.get(handout_id=11021994)

@@ -153,7 +153,6 @@ def put_handout(request):
 def get_handouts(request):
     """
     Request JSON:
-    @username: The individual's username
     @teacher: The teacher of the primary user
     @period: The period that the student is attending that class (if applicable)
 
@@ -172,11 +171,12 @@ def get_handouts(request):
     We can have default image URLs (they can be stored locally)
 
     JSON Response:
-    @Errorcode: 1 if the operation succeeded, or -1 if it failed. -2 Means that an exception was thrown
+    @errcode: 1 if the operation succeeded, or -1 if it failed. -2 Means that an exception was thrown
     @file_name: A list of up to three titles of handouts
     Note: We won't provide them with URLs, but if the account is a test account, we need to make a call to find handouts
     """
     try:
+        logging.exception(request)
         try:
             req = json.loads(request.body)
         except ValueError:

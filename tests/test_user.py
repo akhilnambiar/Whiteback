@@ -17,6 +17,6 @@ class UsersModelTestCase(TestCase):
         self.assertEqual(test_user.period[0], 2)
         json_file = open("backend/fixtures/populate.json")
         json_data = "".join(json_file.readlines())
-        print json_data
+        # print json_data
         json.loads(json_data)
 
