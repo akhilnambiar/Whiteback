@@ -218,7 +218,7 @@ class HandoutModel(models.Model):
             selected_choice = HandoutModel.objects.filter(
                 teacher=teacher, period=period).order_by('due_date')
         except HandoutModel.DoesNotExist:
-            return [None]
+            return None
         else:
             result = []
             i = 0
