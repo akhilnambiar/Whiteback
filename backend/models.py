@@ -223,7 +223,11 @@ class HandoutModel(models.Model):
             result = []
             i = 0
             for x in selected_choice:
-                result.append(x.file_name)
+                element = []
+                element.append(x.file_name)
+                element.append(str(x.due_date))
+                element.append(x.google_id)
+                result.append(element)
                 i += 1
                 if i == 3:
                     break

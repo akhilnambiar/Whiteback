@@ -176,7 +176,7 @@ def get_handouts(request):
     Note: We won't provide them with URLs, but if the account is a test account, we need to make a call to find handouts
     """
     try:
-        logging.exception(request)
+        # logging.exception(request)
         try:
             req = json.loads(request.body)
         except ValueError:
@@ -188,9 +188,9 @@ def get_handouts(request):
         handout = db_model.get_handouts(teacher, period)
         # the first item shouldn't be None, if it is, there is an error
         if handout == None:
-            res = {'errcode': -1, 'file_name': []}
+            res = {'errcode': -1, 'selected_file_info': []}
         else:
-            res = {'errcode': 1, 'file_name': handout}
+            res = {'errcode': 1, 'selected_file_info': handout}
         return HttpResponse(json.dumps(res), content_type='application/json')
     except Exception, ex:
         logging.exception("Something awful happened!")
