@@ -39,4 +39,6 @@ class HandoutModelTestCase(TestCase):
             '/get_handout/', {'teacher': 'Mr. Banks', 'period': 4}, content_type='application/json')
         # print response.content
         value = dict(ast.literal_eval(response.content))
-        self.assertEqual(value.get("selected_file_info")[0][0], 'testing')
+        self.assertEqual(value.get("file_name")[0], 'testing')
+        self.assertEqual(value.get("google_id")[0], 'google')
+        

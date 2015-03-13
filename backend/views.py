@@ -115,7 +115,7 @@ def add_user(request):
 
     # req = correct_data[0]
     # inList = correct_data[1]
-    # if inList:        
+    # if inList:
     #     username = req['username'][0]
     #     school = req['school'][0]
     #     first_name = req['first_name'][0]
@@ -141,7 +141,7 @@ def put_handout(request):
     req = json.loads(request.body)
     file_name = req.get('file_name', None)
     teacher = req.get('teacher', None)
-    period  = req.get('period', None)
+    period = req.get('period', None)
     db_model = HandoutModel()
     # add_user will return a list of two items
     errcode = db_model.put_handout(teacher, period, file_name)
@@ -188,9 +188,11 @@ def get_handouts(request):
         handout = db_model.get_handouts(teacher, period)
         # the first item shouldn't be None, if it is, there is an error
         if handout == None:
-            res = {'errcode': -1, 'selected_file_info': []}
+            res = {'errcode': -1, 'file_name': [],
+                   'google_id': [], 'due_date': []}
         else:
-            res = {'errcode': 1, 'selected_file_info': handout}
+            res = {'errcode': 1, 'file_name': handout['file_name'],
+                   'google_id': handout['google_id'], 'due_date': handout['due_date']}
         return HttpResponse(json.dumps(res), content_type='application/json')
     except Exception, ex:
         logging.exception("Something awful happened!")
@@ -258,7 +260,7 @@ def send_invites(request):
         u = req.get('user_id', None)
         inviter = req.get('inviter', None)
         invitee = req.get('invitee', None)
-        f = req.get('file_name', None) 
+        f = req.get('file_name', None)
         db_model1 = HandoutModel()
         if f != "None":
             h = db_model1.get_handout_from_file_name(f)

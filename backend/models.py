@@ -220,14 +220,12 @@ class HandoutModel(models.Model):
         except HandoutModel.DoesNotExist:
             return None
         else:
-            result = []
+            result = {'file_name': [], 'due_date': [], 'google_id': []}
             i = 0
             for x in selected_choice:
-                element = []
-                element.append(x.file_name)
-                element.append(str(x.due_date))
-                element.append(x.google_id)
-                result.append(element)
+                result['file_name'].append(x.file_name)
+                result['due_date'].append(str(x.due_date))
+                result['google_id'].append(x.google_id)
                 i += 1
                 if i == 3:
                     break
