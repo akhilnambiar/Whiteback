@@ -218,12 +218,17 @@ def get_classmates(request):
     @user_id: A list of the corresponding user_ids (used to send invites later)
     """
     try:
-        req = json.loads(request.body)
+        try:
+            req = json.loads(request.body)
+        except ValueError:
+            req = dict(ast.literal_eval(json.dumps(request.GET)))
         teacher = req.get('teacher', None)
         period = req.get('period', None)
+        user = req.get('user', None)
         db_model = UsersModel()
+
         # add_user will return a list of three items
-        result = db_model.get_classmates(teacher, period)
+        result = db_model.get_classmates(teacher, period, user)
         if result[2] == -1:
             res = {'errcode': 1, 'first_name': None,
                    'last_name': None, 'user_id': None}

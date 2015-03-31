@@ -86,10 +86,14 @@ class UsersModel(models.Model):
             errcode = -1
             return [errcode, 0]
 
-    def get_classmates(self, t, p):
+    def get_classmates(self, t, p, u):
         try:
-            selected_choice = UsersModel.objects.filter(
-                teacher=t).filter(period=p)
+            selected_choice = []
+            everything = UsersModel.objects.all()
+            for choices in everything:
+                if t in choices.teacher and int(p) in choices.period and u != choices.user:
+                    selected_choice.append(choices)
+
         except UsersModel.DoesNotExist:
             return [None, None, None, -1]
         # WE NEED TO WAIT FOR THE QUERY TO RETURN!
