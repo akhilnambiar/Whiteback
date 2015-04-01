@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 import datetime
 import StringIO
 import logging
@@ -8,6 +9,7 @@ from django.db import IntegrityError
 # field for having the model take in a list for processing
 # Credits to jathanism on StackOverflow
 # http://stackoverflow.com/questions/5216162/how-to-create-list-field-in-django
+
 
 class ListField(models.TextField):
     __metaclass__ = models.SubfieldBase
@@ -157,10 +159,11 @@ class TeacherModel(models.Model):
 
 
 class InvitesModel(models.Model):
-    user = models.CharField(max_length=128, null=True)
+    # user = models.CharField(max_length=128, null=True)
+    inviter = models.CharField(max_length=128, null=True)
     invite_id = models.CharField(max_length=128, null=True)
     handout_id = models.CharField(max_length=128, null=True)
-    inviter = models.CharField(max_length=128, null=True)
+    invite_date = models.DateTimeField(null=True)
     invitee = ListField(null=True)
 
     """
@@ -169,13 +172,12 @@ class InvitesModel(models.Model):
         unique_together = ("user_id", "handout")
     """
 
-    def put_invite(self, u, h, inviter, invitee):
+    def put_invite(self, h, inviter, invitee):
         newinvite = InvitesModel()
-        newinvite.user = u
-        newinvite.invite_id = len(InvitesModel.objects.all())
-        newinvite.handout = h
         newinvite.inviter = inviter
         newinvite.invitee = invitee
+        newinvite.handout_id = h
+        newinvite.invite_date = timezone.now()
 
         try:
             newinvite.save()
@@ -184,20 +186,18 @@ class InvitesModel(models.Model):
             return -1
 
     # returns -1 if there are no items found, and 1 if items are found
-    def get_invite(self, u, t, p):
+    def get_invite(self, u):
         try:
-            selected_choice = InvitesModel.objects.filter(user=u)
-        except InvitesModel.DoesNotExist:
-            return [None, None, -1]
-        else:
+            everything = InvitesModel.objects.all()
             file_names = []
             dates = []
-            for x in selected_choice:
-                x = x.handout
-                if (x.teacher == t and x.period == int(p)):
-                    file_names.append(x.file_name)
-                    dates.append(str(x.date.date()))
+            for choices in everything:
+                if u in choices.invitee:
+                    file_names.append(choices.handout_id)
+                    dates.append(str(choices.invite_date))
             return [file_names, dates, 1]
+        except InvitesModel.DoesNotExist:
+            return [None, None, -1]
 
 
 class HandoutModel(models.Model):
@@ -260,6 +260,7 @@ class HandoutModel(models.Model):
             return None
         else:
             return selected_choice
+
 
 class GTLFiles(models.Model):
     google_id = models.CharField(max_length=128, null=True)

@@ -1,4 +1,4 @@
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
@@ -261,26 +261,30 @@ def send_invites(request):
     TODO: We need to make sure for a given handout, the student and the period and stuff line up. It will work for now but we will need to fix it
     """
     try:
-        req = json.loads(request.body)
-        u = req.get('user_id', None)
+        # print request.body
+        try:
+            req = json.loads(request.body)
+        except ValueError:
+            req = dict(ast.literal_eval(json.dumps(request.body)[1:-1]))
         inviter = req.get('inviter', None)
         invitee = req.get('invitee', None)
-        f = req.get('file_name', None)
+        file_name = req.get('file_name', None)
         db_model1 = HandoutModel()
-        if f != "None":
-            h = db_model1.get_handout_from_file_name(f)
-            if h == None:
+        # print "aawejfaowiefjawoeij"
+        if file_name:
+            h = db_model1.get_handout_from_file_name(file_name)
+            if not h:
                 res = {'errcode': -2}
                 return HttpResponse(json.dumps(res), content_type='application/json')
         else:
             h = None
+
         db_model2 = InvitesModel()
         errorcode = 1
-        for x in u:
-            error = db_model2.put_invite(x, h, inviter, invitee)
-            if error == -1 and errorcode == 1:
-                errorcode = - 1
-            res = {'errcode': errorcode}
+        error = db_model2.put_invite(h, inviter, invitee)
+        if error == -1 and errorcode == 1:
+            errorcode = - 1
+        res = {'errcode': errorcode}
         return HttpResponse(json.dumps(res), content_type='application/json')
     except Exception, ex:
         render(logging.exception("Something awful happened!"))
@@ -302,12 +306,13 @@ def get_invites(request):
     @date: A list of all of the date
     """
     try:
-        req = json.loads(request.body)
-        u = req.get('user_id', None)
-        f = req.get('teacher', None)
-        p = req.get('period', None)
+        try:
+            req = json.loads(request.body)
+        except ValueError:
+            req = dict(ast.literal_eval(json.dumps(request.GET)))
+        u = req.get('inviter', None)
         db_model = InvitesModel()
-        errcode = db_model.get_invite(u, f, p)
+        errcode = db_model.get_invite(u)
         if errcode[2] == -1:
             res = {'errcode': errcode[2], 'file_name': None, 'date': None}
         else:
