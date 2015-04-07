@@ -368,3 +368,8 @@ def get_request_data(request):
         return [data, False]
     else:
         return [req, True]
+
+
+
+def portal(request):
+    return render(request, 'portal_login.html')

@@ -16,5 +16,6 @@ urlpatterns = patterns('',
     url(r'^send_invites/', 'backend.views.send_invites'),
     url(r'^get_invites/', 'backend.views.get_invites'),
     url(r'^poops/', 'backend.views.add'),
+    url(r'^portal/', 'backend.views.portal'),
     url(r'^admin/', include(admin.site.urls)),
 )
