@@ -386,7 +386,7 @@ def portal(request):
     OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
 
     # Redirect URI for installed apps
-    REDIRECT_URI = 'shrouded-ocean-4177.herokuapp.com/portal'
+    REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/'
 
     # Path to the file to upload
     #FILENAME = 'document.txt'
