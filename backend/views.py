@@ -378,6 +378,9 @@ def get_request_data(request):
 def web_login(request):
     return render(request, 'login.html')
 
+def web_login(request):
+    return render(request, 'register.html')
+
 def portal(request):
     # Copy your credentials from the console
     CLIENT_ID = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0.apps.googleusercontent.com'

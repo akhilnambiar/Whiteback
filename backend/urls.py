@@ -19,4 +19,5 @@ urlpatterns = patterns('',
     url(r'^portal/', 'backend.views.portal'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^web_login', 'backend.views.web_login'),
+    url(r'^web_register/', 'backend.views.web_register'),
 )
