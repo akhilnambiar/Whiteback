@@ -421,3 +421,4 @@ def portal(request):
     return redirect(authorize_url)
     """
     #return render(request, 'portal_login.html')
+    """
