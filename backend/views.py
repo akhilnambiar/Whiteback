@@ -376,7 +376,7 @@ def get_request_data(request):
         return [req, True]
 
 def web_login(request):
-    return render(request, 'portal_login.html')
+    return render(request, 'login.html')
 
 def portal(request):
     # Copy your credentials from the console
