@@ -396,6 +396,9 @@ def portal(request):
                                redirect_uri=REDIRECT_URI)
     authorize_url = flow.step1_get_authorize_url()
     print 'Go to the following link in your browser: ' + authorize_url
+    
+    return redirect("http://ign.com/")
+    """
     code = raw_input('Enter verification code: ').strip()
     credentials = flow.step2_exchange(code)
 
@@ -404,8 +407,8 @@ def portal(request):
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    redirect("http://ign.com/")
-    """
+
+
     # Insert a file
     media_body = MediaFileUpload(FILENAME, mimetype='text/plain', resumable=True)
     body = {
