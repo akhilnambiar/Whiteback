@@ -375,7 +375,8 @@ def get_request_data(request):
     else:
         return [req, True]
 
-
+def web_login(request):
+    return render(request, 'portal_login.html')
 
 def portal(request):
     # Copy your credentials from the console
@@ -386,7 +387,7 @@ def portal(request):
     OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
 
     # Redirect URI for installed apps
-    REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/'
+    REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/portal'
 
     # Path to the file to upload
     #FILENAME = 'document.txt'
@@ -397,8 +398,6 @@ def portal(request):
     authorize_url = flow.step1_get_authorize_url()
     print 'Go to the following link in your browser: ' + authorize_url
     
-    return redirect(authorize_url)
-    """
     code = raw_input('Enter verification code: ').strip()
     credentials = flow.step2_exchange(code)
 
@@ -419,5 +418,6 @@ def portal(request):
 
     file = drive_service.files().insert(body=body, media_body=media_body).execute()
     pprint.pprint(file)
+    return redirect(authorize_url)
     """
     #return render(request, 'portal_login.html')
