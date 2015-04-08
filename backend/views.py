@@ -378,7 +378,7 @@ def get_request_data(request):
 def web_login(request):
     return render(request, 'login.html')
 
-def web_login(request):
+def web_register(request):
     return render(request, 'register.html')
 
 def portal(request):
