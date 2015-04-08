@@ -163,6 +163,7 @@ class HandoutModel(models.Model):
     # We aren't having teachers push out the files itself, once that happens
     # we will use a File ID
     handout_id = models.CharField(max_length=128, null=True)
+    thumbnailLink = models.CharField(max_length=128, null=True)
     teacher = models.CharField(max_length=128, null=True)
     period = models.IntegerField(null=True)
     file_name = models.CharField(max_length=128, null=True)
@@ -201,6 +202,10 @@ class HandoutModel(models.Model):
         except HandoutModel.DoesNotExist:
             newhand = HandoutModel()
             newhand.handout_id = len(HandoutModel.objects.all())
+            try:
+                newhand.user_relation = UsersModel.objects.get(user=t)
+            except Exception:
+                return -2
             newhand.teacher = t
             newhand.period = p
             newhand.file_name = f
@@ -220,9 +225,3 @@ class HandoutModel(models.Model):
             return None
         else:
             return selected_choice
-
-
-class GTLFiles(models.Model):
-    google_id = models.CharField(max_length=128, null=True)
-    title = models.CharField(max_length=128, null=True)
-    thumbnailLink = models.CharField(max_length=128, null=True)
