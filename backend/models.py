@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils import timezone
+from django.db import IntegrityError
 import datetime
 import StringIO
 import logging
 import ast
-from django.db import IntegrityError
 
 # field for having the model take in a list for processing
 # Credits to jathanism on StackOverflow
@@ -41,7 +41,7 @@ class UsersModel(models.Model):
     first_name = models.CharField(max_length=128, null=True)
     last_name = models.CharField(max_length=128, null=True)
     teacher = ListField(null=True)
-    # teacher = models.CharField(max_length=128, null=True)
+    is_teacher = models.BooleanField(default=False)
     school = models.CharField(max_length=128, null=True)
     period = ListField(null=True)
     email = models.CharField(max_length=128, unique=True, null=True)
@@ -66,6 +66,14 @@ class UsersModel(models.Model):
         else:
             errcode = 1
             return[selected_choice.user, errcode]
+
+    def get_teachers(self, username):
+        try:
+            selected_choice = UsersModel.objects.get(user=username)
+            return selected_choice.teacher
+        except:
+            return -1
+
 
     def add_user(self, username, school, teacher, period, first_name, last_name, email):
         try:
@@ -110,54 +118,6 @@ class UsersModel(models.Model):
             return [first_names, last_names, user_ids, 1]
 
 
-class TeacherModel(models.Model):
-    user_id = models.CharField(max_length=128, null=True)
-    first_name = models.CharField(max_length=128, null=True)
-    last_name = models.CharField(max_length=128, null=True)
-    school = models.CharField(max_length=128, null=True)
-    period = ListField(null=True)
-    email = models.CharField(max_length=128, null=True)
-
-    def login(self, username):
-        try:
-            selected_choice = TeacherModel.objects.get(user_id=username)
-        except UsersModel.DoesNotExist:
-            errcode = -1
-            return [None, errcode, None, None]
-        else:
-            errcode = 1
-            return [selected_choice.user_id, errcode, selected_choice.first_name, selected_choice.period]
-
-    def get_teacher_id(self, username):
-        try:
-            selected_choice = TeacherModel.objects.get(user_id=username)
-        except:
-            errcode = -1
-            return [None, errcode]
-        else:
-            errcode = 1
-            return[selected_choice.user_id, errcode]
-
-    def add_teacher(self, username, first_name, last_name, school, period, email):
-        try:
-            selected_choice = TeacherModel.objects.get(user_id=username)
-        except UsersModel.DoesNotExist:
-            newuser = UsersModel()
-            newuser.user_id = username
-            newuser.first_name = first_name
-            newuser.last_name = last_name
-            newuser.school = school
-            newuser.period = period
-            newuser.email = email
-            newuser.save()
-            errcode = 1
-            return [errcode, 0]
-        else:
-            # that user is already there
-            errcode = -1
-            return [errcode, 0]
-
-
 class InvitesModel(models.Model):
     # user = models.CharField(max_length=128, null=True)
     inviter = models.CharField(max_length=128, null=True)
@@ -199,7 +159,6 @@ class InvitesModel(models.Model):
         except InvitesModel.DoesNotExist:
             return [None, None, -1]
 
-
 class HandoutModel(models.Model):
     # We aren't having teachers push out the files itself, once that happens
     # we will use a File ID
@@ -211,6 +170,7 @@ class HandoutModel(models.Model):
     push_date = models.DateTimeField(null=True)
     google_id = models.CharField(max_length=128, null=True)
     invite_id = models.CharField(max_length=128, null=True)
+    user_relation = models.ForeignKey(UsersModel, null=True)
 
     """
     @returns a list of handout objects (up to 3)

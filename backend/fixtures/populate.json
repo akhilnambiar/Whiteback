@@ -130,39 +130,42 @@
     }
   },
   {
-    "model": "backend.TeacherModel",
+    "model": "backend.UsersModel",
     "pk": 1,
     "fields": {
-      "user_id": "t0",
+      "user": "t0",
       "first_name": "Jane",
       "last_name": "Aldrin",
       "school": "Wm Fremd High School",
       "period": [4],
-      "email": "classboard.teacher@gmail.com"
+      "email": "classboard.teacher@gmail.com",
+      "is_teacher": "True"
     }
   },
   {
-    "model": "backend.TeacherModel",
+    "model": "backend.UsersModel",
     "pk": 2,
     "fields": {
-      "user_id": "t1",
+      "user": "t1",
       "first_name": "Marissa",
       "last_name": "Tomazoski",
       "school": "Wm Fremd High School",
       "period": [6,8],
-      "email": "classboard.teacher2@gmail.com"
+      "email": "classboard.teacher2@gmail.com",
+      "is_teacher": "True"
     }
   },
   {
-    "model": "backend.TeacherModel",
+    "model": "backend.UsersModel",
     "pk": 3,
     "fields": {
-      "user_id": "t2",
+      "user": "t2",
       "first_name": "Rob",
       "last_name": "Hanson",
       "school": "Wm Fremd High School",
       "period": [1,3,5,7],
-      "email": "classboard.teacher3@gmail.com"
+      "email": "classboard.teacher3@gmail.com",
+      "is_teacher": "True"
     }
   },
   {
