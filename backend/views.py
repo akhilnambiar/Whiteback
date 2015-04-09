@@ -374,13 +374,15 @@ def get_request_data(request):
         return [data, False]
     else:
         return [req, True]
-
+@csrf_exempt
 def web_login(request):
     return render(request, 'login.html')
 
+@csrf_exempt
 def web_register(request):
     return render(request, 'register.html')
 
+@csrf_exempt
 def portal(request):
     # Copy your credentials from the console
     CLIENT_ID = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0.apps.googleusercontent.com'
