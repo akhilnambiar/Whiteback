@@ -404,16 +404,17 @@ def portal(request):
     print 'Go to the following link in your browser: ' + authorize_url
     
     #code = raw_input('Enter verification code: ').strip()
-    credentials = flow.step2_exchange(code)
+    #credentials = flow.step2_exchange(code)
 
     # Create an httplib2.Http object and authorize it with our credentials
     http = httplib2.Http()
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-
-
+    return redirect(authorize_url)
+    """
     # Insert a file
+    
     media_body = MediaFileUpload(FILENAME, mimetype='text/plain', resumable=True)
     body = {
       'title': 'My document',
@@ -423,7 +424,5 @@ def portal(request):
 
     file = drive_service.files().insert(body=body, media_body=media_body).execute()
     pprint.pprint(file)
-    return redirect(authorize_url)
-    """
     #return render(request, 'portal_login.html')
     """
