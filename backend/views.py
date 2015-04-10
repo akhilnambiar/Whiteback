@@ -399,7 +399,8 @@ def web_register(request):
 
 @csrf_exempt
 def home(request):
-
+    verification_code = request.GET.get('code')
+    print verification_code
     credentials = flow.step2_exchange(code)
 
     # Create an httplib2.Http object and authorize it with our credentials
@@ -411,7 +412,6 @@ def home(request):
 
 @csrf_exempt
 def portal(request):
-
     # Path to the file to upload
     #FILENAME = 'document.txt'
 
