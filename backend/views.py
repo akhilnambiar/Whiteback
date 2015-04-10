@@ -404,7 +404,7 @@ def portal(request):
     print 'Go to the following link in your browser: ' + authorize_url
     
     #code = raw_input('Enter verification code: ').strip()
-    return redirect(authorize_url)s
+    return redirect(authorize_url)
     """
     credentials = flow.step2_exchange(code)
 
