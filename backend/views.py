@@ -18,6 +18,21 @@ from apiclient.http import MediaFileUpload
 from oauth2client.client import OAuth2WebServerFlow
 
 
+#Google Drive Setup
+# Copy your credentials from the console
+CLIENT_ID = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0.apps.googleusercontent.com'
+CLIENT_SECRET = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0@developer.gserviceaccount.com'
+
+# Check https://developers.google.com/drive/scopes for all available scopes
+OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
+# Redirect URI for installed apps
+REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/home'
+
+# Run through the OAuth flow and retrieve credentials
+flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, OAUTH_SCOPE,
+                               redirect_uri=REDIRECT_URI)
+
+
 # NOTE: For the BETA, people will only be adding accounts
 # NOTE: After the BETA, we will need to account for school as well
 # NOTE: Assumption, that we are only supporting one school right now
@@ -383,25 +398,32 @@ def web_register(request):
     return render(request, 'register.html')
 
 @csrf_exempt
+def home(request):
+
+    credentials = flow.step2_exchange(code)
+
+    # Create an httplib2.Http object and authorize it with our credentials
+    http = httplib2.Http()
+    http = credentials.authorize(http)
+
+    drive_service = build('drive', 'v2', http=http)
+    return render(request, 'home.html')
+
+@csrf_exempt
 def portal(request):
-    # Copy your credentials from the console
-    CLIENT_ID = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0.apps.googleusercontent.com'
-    CLIENT_SECRET = '793279303810-ailump7cr7ehok1lt5bls480o8bbr4e0@developer.gserviceaccount.com'
-
-    # Check https://developers.google.com/drive/scopes for all available scopes
-    OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
-
-    # Redirect URI for installed apps
-    REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/portal'
 
     # Path to the file to upload
     #FILENAME = 'document.txt'
 
-    # Run through the OAuth flow and retrieve credentials
-    flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, OAUTH_SCOPE,
-                               redirect_uri=REDIRECT_URI)
     authorize_url = flow.step1_get_authorize_url()
     print 'Go to the following link in your browser: ' + authorize_url
+    credentials = flow.step2_exchange(code)
+
+    # Create an httplib2.Http object and authorize it with our credentials
+    http = httplib2.Http()
+    http = credentials.authorize(http)
+
+    drive_service = build('drive', 'v2', http=http)
     
     #code = raw_input('Enter verification code: ').strip()
     return redirect(authorize_url)
