@@ -5,6 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import get_object_or_404, render, redirect
 from ast import literal_eval
 from backend.models import UsersModel, HandoutModel, InvitesModel
+from django.forms.models import model_to_dict
 import json
 import logging
 import ast
@@ -260,6 +261,32 @@ def get_classmates(request):
     except Exception, ex:
         render(logging.exception("Something awful happened!"))
 
+#Function in Development, make sure to load fixtures with the relation
+@csrf_exempt
+def get_documents(request):
+    """
+    Request JSON:
+    """
+    try:
+        try:
+            req = json.loads(request.body)
+        except ValueError:
+            req = dict(ast.literal_eval(json.dumps(request.GET)))
+        documents = {}
+        user_id = req.get('username', None)
+        sort_by = req.get('sort_by', None)
+        db_model = UsersModel()
+        teachers = db_model.get_teachers(user_id)
+        for teacher in teachers:
+            teacher_user = UsersModel.objects.get(user=teacher)
+            handouts = HandoutModel.objects.filter(user_relation=teacher_user)
+            files = []
+            for values in handouts:
+                files.append(model_to_dict(values))
+            documents.update({ "teacher" : teacher, "files" : files })
+        return HttpResponse(json.dumps(documents), content_type='application/json')
+    except Exception, ex:
+        render(logging.exception("Something awful happened when getting documents!"))
 
 @csrf_exempt
 def send_invites(request):
