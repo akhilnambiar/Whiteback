@@ -403,7 +403,7 @@ def portal(request):
     authorize_url = flow.step1_get_authorize_url()
     print 'Go to the following link in your browser: ' + authorize_url
     
-    code = raw_input('Enter verification code: ').strip()
+    #code = raw_input('Enter verification code: ').strip()
     credentials = flow.step2_exchange(code)
 
     # Create an httplib2.Http object and authorize it with our credentials
