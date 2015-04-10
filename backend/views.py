@@ -417,17 +417,17 @@ def portal(request):
 
     authorize_url = flow.step1_get_authorize_url()
     print 'Go to the following link in your browser: ' + authorize_url
-    credentials = flow.step2_exchange(code)
     
     #code = raw_input('Enter verification code: ').strip()
     return redirect(authorize_url)
     """
+    credentials = flow.step2_exchange(code)
     # Create an httplib2.Http object and authorize it with our credentials
     http = httplib2.Http()
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    
+
     credentials = flow.step2_exchange(code)
 
     # Create an httplib2.Http object and authorize it with our credentials
