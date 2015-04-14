@@ -62,13 +62,14 @@ body {
 
 /* buttons */
 .homebtn {
+	border: solid 2px white;
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 10px;
   font-family: 'Walkway';
   color: #000000;
   font-size: 20px;
-  background: #A8E5FF;
+  background: none;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   margin-left:33%;
