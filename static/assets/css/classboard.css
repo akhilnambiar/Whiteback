@@ -47,7 +47,7 @@ body {
 		background-image: url("../img/chalk.jpg");
       	font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
       	background-size: cover;
-      	background-repeat: no-repeat;
+      	background-repeat: repeat-y;
     }
 
 
