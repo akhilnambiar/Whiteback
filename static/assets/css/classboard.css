@@ -71,6 +71,8 @@ body {
   background: #A8E5FF;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
+  margin-left:33%;
+  margin-right:33%;
 }
 
 .homebtn:hover {
