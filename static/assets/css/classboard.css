@@ -61,7 +61,7 @@ body {
 
 
 /* buttons */
-.btn {
+.homebtn {
   -webkit-border-radius: 10;
   -moz-border-radius: 10;
   border-radius: 10px;
@@ -73,7 +73,7 @@ body {
   text-decoration: none;
 }
 
-.btn:hover {
+.homebtn:hover {
   background: #004969;
   text-decoration: none;
 }
