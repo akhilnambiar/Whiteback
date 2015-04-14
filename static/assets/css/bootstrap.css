@@ -6,7 +6,11 @@
  * http://www.apache.org/licenses/LICENSE-2.0
  *
  * Designed and built with all the love in the world by @mdo and @fat.
+ *
+ *  NOTE: THIS HAS BEEN CHANGED TO REFLECT THE NEEDS OF CLASSBOARD
  */
+
+
 
 .clearfix {
   *zoom: 1;
@@ -4597,7 +4601,7 @@ input[type="submit"].btn.btn-mini {
   position: relative;
   left: 0;
   display: block;
-  float: left;
+  float: right;
   margin: 0 10px 0 0;
 }
 
@@ -4804,7 +4808,7 @@ input[type="submit"].btn.btn-mini {
 
 .navbar-inverse .brand,
 .navbar-inverse .nav > li > a {
-  color: #999999;
+  color: #000000;
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
 }
 
