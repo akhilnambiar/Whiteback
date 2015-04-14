@@ -34,7 +34,7 @@
       margin: 0 auto;
       padding: 20px 20px 20px;
       width: 310px;
-      border-radius: 3px;
+      border-radius: 15px;
       @include box-shadow(0 0 200px rgba(white, .5), 0 1px 2px rgba(black, .3));
 
       &:before {
@@ -49,7 +49,7 @@
       h1 {
         margin: -20px -20px 21px;
         line-height: 40px;
-        font-size: 15px;
+        font-size: 60px;
         font-weight: bold;
         color: #555;
         text-align: center;
@@ -111,7 +111,13 @@
       font-size: 13px;
     }
 
-
+    .button {
+      width: 30%;
+      left: 1000px;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
     input[type=text], input[type=password] {
       margin: 5px;
@@ -172,21 +178,15 @@
 </head>
 <body>
   <section class="container">
-    <div class="login maincolor">
-      <h1>Classboard</h1>
+    <div class="login">
+      <h1 class="boldWalk">Classboard</h1>
       <form method="post" action="index.html">
-        <p class="btn">Sign In</p>
-        <p class="btn">Register</p>
+        <p class="btn button">Sign In</p>
+        <p class="btn button">Register</p>
       </form>
-    </div>
-
-    <div class="login-help">
-      <p>Forgot your password? <a href="index.html">Click here to reset it</a>.</p>
     </div>
   </section>
 
-
-  <div id="walk"> Walkway Font </div>
 </body>
 </html>
 

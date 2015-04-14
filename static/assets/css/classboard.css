@@ -34,12 +34,18 @@
   src: url('../fonts/walkway/WalkwaySemi.ttf');
 }
 
+@font-face {
+  font-family: 'Walkway-Bold';
+  src: url('../fonts/walkway/WalkwayBold.ttf');
+}
+
 section {
 	font-family: 'Walkway';
 }
 
 body {
-      font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
+		background-image: url("../img/chalk.jpg");
+      	font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
     }
 
 
@@ -47,6 +53,9 @@ body {
 	background: #0BB6FF;
 }
 
+.boldWalk {
+	font-family: 'Walkway-Bold'
+}
 
 
 /* buttons */
