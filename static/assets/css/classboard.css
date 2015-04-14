@@ -43,11 +43,13 @@ section {
 	font-family: 'Walkway';
 }
 
-body {
+.loginbody {
 		background-image: url("../img/chalk.jpg");
       	font: 13px/20px 'Lucida Grande', Tahoma, Verdana, sans-serif;
       	background-size: cover;
       	background-repeat: repeat-y;
+      	padding-top: 40px;
+  		padding-bottom: 40px;
     }
 
 
