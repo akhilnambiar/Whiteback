@@ -4032,6 +4032,8 @@ input[type="submit"].btn.btn-mini {
 .nav-tabs,
 .nav-pills {
   *zoom: 1;
+  width:25%;
+  background-image: linear-gradient(to bottom, #76D6FF, #0BB5FF)
 }
 
 .nav-tabs:before,
