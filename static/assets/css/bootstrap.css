@@ -4038,7 +4038,7 @@ input[type="submit"].btn.btn-mini {
   *zoom: 1;
   width:160px;
   min-width:120px;
-  margin-left:-80px;
+  margin-left:-20px;
   box-shadow: 2px 2px 2px 2px rgb(187, 187, 187);
   background-color: rgba(227, 227, 227, 0.7);
   margin-left: -80px;
