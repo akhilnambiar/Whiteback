@@ -97,9 +97,14 @@ section {
 /* From Dashboard.css */
 body {
   padding-top: 50px;
+  font-family:'Walkway';
+  color:#000;
 }
 
-
+.blackWalk {
+  font-family:'Walkway';
+  color:#000;
+}
 /*
  * Global add-ons
  */
