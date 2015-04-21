@@ -186,7 +186,12 @@ body {
 }
 
 .headerbar {
-  background-color: rgba(46, 148, 236, 0.73)
+  background-color: rgba(46, 148, 236, 0.73);
+  box-shadow: 2px 2px 2px 2px #DDD;
+}
+
+.row > .sidebar{
+  background-color: rgba(227, 227, 227, 0.7)
 }
 
 
