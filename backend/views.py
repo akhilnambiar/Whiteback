@@ -425,6 +425,10 @@ def web_register(request):
     return render(request, 'register.html')
 
 @csrf_exempt
+def old_home(request):
+    return render(request, 'home.html')
+
+@csrf_exempt
 def home(request):
     code = request.GET.get('code')
     credentials = flow.step2_exchange(code)

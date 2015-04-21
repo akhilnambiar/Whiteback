@@ -22,4 +22,5 @@ urlpatterns = patterns('',
     url(r'^web_login/', 'backend.views.web_login'),
     url(r'^home/', 'backend.views.home'),
     url(r'^web_register/', 'backend.views.web_register'),
+    url(r'^old_home/', 'backend.views.old_home'),
 )
