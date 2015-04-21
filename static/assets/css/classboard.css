@@ -209,6 +209,10 @@ body {
     font-size: 20px;
 }
 
+.btn-group-lg > .btn, .btn-lg {
+    width: 249px;
+}
+
 /*
  * Placeholder dashboard ideas
  */
