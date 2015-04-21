@@ -434,7 +434,7 @@ def home(request):
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    return render(request, 'home.html')
+    return render(request, 'homev2.html')
 
 @csrf_exempt
 def portal(request):
