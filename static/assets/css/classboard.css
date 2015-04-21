@@ -194,6 +194,18 @@ body {
   background-color: rgba(227, 227, 227, 0.7)
 }
 
+.navbar-header > .navbar-brand {
+    color: rgb(0, 0, 0);
+}
+
+#navbar > .navbar-right > li > a {
+    color: #000;
+}
+
+.nav-sidebar > li > a {
+    color: #000;
+    font-size: 20px;
+}
 
 /*
  * Placeholder dashboard ideas
