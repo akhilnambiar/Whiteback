@@ -444,9 +444,10 @@ def home(request):
     #print 'Current user name: %s' % about['name']
     print 'CURRENT USER ID: %s' % about['permissionId']
     now = "Eren Yegar"
-    email = about['user']['emailAddress']
-    name = about['name']
-    return render(request, 'homev2.html',{'payasam':now})
+    user_id = about['permissionId']
+    if validate(user_id)==1:
+        return render(request, 'homev2.html',{'payasam':now})
+    return render(request, 'invalid_login.html')
 
 """
 Note: This is a helper function which will get all of the documents relevant to a teacher
@@ -470,9 +471,9 @@ A helper function which will validate a user
 @param
 @return 1 if the user is valid, -1 otherwise
 """
-def validate(username):
+def validate(user_id):
     db_model = UsersModel()
-    errcode = db_model.login(username)
+    errcode = db_model.login(user_id)
     if errcode[1] == 1:
         return 1
     return -1
