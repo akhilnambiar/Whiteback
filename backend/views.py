@@ -445,6 +445,7 @@ def home(request):
     print 'Root folder ID: %s' % about['rootFolderId']
     print 'Total quota (bytes): %s' % about['quotaBytesTotal']
     print 'Used quota (bytes): %s' % about['quotaBytesUsed']
+    print 'Used quota (bytes): %s' % about['user']['emailAddress']
     now = "Eren Yegar"
     return render(request, 'homev2.html',{'payasam':now})
 
