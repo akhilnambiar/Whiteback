@@ -439,7 +439,12 @@ def home(request):
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    print(drive_service.)
+    about = service.about().get().execute()
+
+    print 'Current user name: %s' % about['name']
+    print 'Root folder ID: %s' % about['rootFolderId']
+    print 'Total quota (bytes): %s' % about['quotaBytesTotal']
+    print 'Used quota (bytes): %s' % about['quotaBytesUsed']
     now = "Eren Yegar"
     return render(request, 'homev2.html',{'payasam':now})
 
