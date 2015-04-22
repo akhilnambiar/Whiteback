@@ -231,3 +231,6 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+.col-xs-6 > .btn, .btn-lg {
+    width: 100%;
+}
