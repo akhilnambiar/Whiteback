@@ -451,13 +451,12 @@ def home(request):
 #Note: This is a helper function which will get all of the documents relevant to a teacher
 def get_docs_for_teach(teacher):
     db_model = HandoutModel()
-        errcode = db_model.get_invite(u)
-        if errcode[2] == -1:
-            res = {'errcode': errcode[2], 'file_name': None, 'date': None}
-        else:
-            res = {
-                'errcode': errcode[2], 'file_name': errcode[0], 'date': errcode[1]}
-        return HttpResponse(json.dumps(res), content_type='application/json')
+    errcode = db_model.get_invite(u)
+    if errcode[2] == -1:
+        res = {'errcode': errcode[2], 'file_name': None, 'date': None}
+    else:
+        res = {'errcode': errcode[2], 'file_name': errcode[0], 'date': errcode[1]}
+    return HttpResponse(json.dumps(res), content_type='application/json')
     except Exception, ex:
         render(logging.exception("Something awful happened!"))
 
