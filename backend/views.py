@@ -439,7 +439,8 @@ def home(request):
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    return render(request, 'homev2.html')
+    now = "Eren Yegar"
+    return render(request, 'homev2.html',{'payasam':now})
 
 @csrf_exempt
 def portal(request):
