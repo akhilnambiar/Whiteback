@@ -441,15 +441,17 @@ def home(request):
     drive_service = build('drive', 'v2', http=http)
     about = drive_service.about().get().execute()
 
-    print 'Current user name: %s' % about['name']
-    print 'Root folder ID: %s' % about['rootFolderId']
-    print 'Total quota (bytes): %s' % about['quotaBytesTotal']
-    print 'Used quota (bytes): %s' % about['quotaBytesUsed']
-    print 'Used quota (bytes): %s' % about['user']['emailAddress']
+    #print 'Current user name: %s' % about['name']
+    print 'CURRENT USER ID: %s' % about['permissionId']
     now = "Eren Yegar"
+    email = about['user']['emailAddress']
+    name = about['name']
     return render(request, 'homev2.html',{'payasam':now})
 
-#Note: This is a helper function which will get all of the documents relevant to a teacher
+"""
+Note: This is a helper function which will get all of the documents relevant to a teacher
+
+"""
 def get_docs_for_teach(teacher):
     try:
         db_model = HandoutModel()
@@ -462,6 +464,18 @@ def get_docs_for_teach(teacher):
     except Exception, ex:
         render(logging.exception("Something awful happened!"))
 
+"""
+A helper function which will validate a user
+@param
+@param
+@return 1 if the user is valid, -1 otherwise
+"""
+def validate(username):
+    db_model = UsersModel()
+    errcode = db_model.login(username)
+    if errcode[1] == 1:
+        return 1
+    return -1
 
 
 @csrf_exempt
