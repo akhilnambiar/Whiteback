@@ -284,6 +284,7 @@ def get_documents(request):
             for values in handouts:
                 files.append(model_to_dict(values))
             documents.update({ "teacher" : teacher, "files" : files })
+            print documents
         return HttpResponse(json.dumps(documents), content_type='application/json')
     except Exception, ex:
         render(logging.exception("Something awful happened when getting documents!"))
