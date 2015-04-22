@@ -27,7 +27,7 @@ CLIENT_SECRET = 'WagZrCaOE8QC4XqMAuFDSWGN'
 # Check https://developers.google.com/drive/scopes for all available scopes
 OAUTH_SCOPE = 'https://www.googleapis.com/auth/drive'
 # Redirect URI for installed apps
-REDIRECT_URI = 'https://shrouded-ocean-4177.herokuapp.com/home'
+REDIRECT_URI = 'https://limitless-wildwood-8014.herokuapp.com/home'
 
 # Run through the OAuth flow and retrieve credentials
 flow = OAuth2WebServerFlow(CLIENT_ID, CLIENT_SECRET, OAUTH_SCOPE,
