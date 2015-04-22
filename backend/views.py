@@ -439,7 +439,7 @@ def home(request):
     http = credentials.authorize(http)
 
     drive_service = build('drive', 'v2', http=http)
-    about = service.about().get().execute()
+    about = drive_service.about().get().execute()
 
     print 'Current user name: %s' % about['name']
     print 'Root folder ID: %s' % about['rootFolderId']
