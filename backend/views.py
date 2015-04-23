@@ -447,7 +447,7 @@ def home(request):
     user_id = about['permissionId']
     if validate(user_id)==1:
         return render(request, 'homev2.html',{'payasam':now})
-    credentials.revoke(http)
+    #credentials.revoke(http)
     return render(request, 'invalid_login.html')
 
 """
