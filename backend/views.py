@@ -448,7 +448,8 @@ def home(request):
     user_data = validate(user_id)
     if user_data[1]==1:
         #helper function to populate teacher
-        get_docs_for_teach(user_data[2],user_data[3])
+        documents = get_docs_for_teach(user_data[2],user_data[3])
+        print(documents)
         return render(request, 'homev2.html',{'payasam':now})
     credentials.revoke(http)
     return render(request, 'invalid_login.html')
@@ -463,8 +464,6 @@ def get_docs_for_teach(teacher,period):
         documents = {}
         teachers = db_model.get_teachers(user_id)
         db_model.get_handouts(teacher,period)
-
-
         for teacher in teachers:
             teacher_user = UsersModel.objects.get(user=teacher)
             handouts = HandoutModel.objects.filter(user_relation=teacher_user)
