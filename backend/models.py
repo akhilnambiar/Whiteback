@@ -196,6 +196,29 @@ class HandoutModel(models.Model):
                     break
             return result
 
+    """
+    This is used if you don't want to cap how many items you get to there.
+    This also adds one more field which allows you show which students are related to a given files
+    @param teacher - the teacher which is requesting files
+    @param period - the period/class for which the teacher requests files
+
+    """
+    def get_many_handouts(self, teacher, period):
+        try:
+            selected_choice = HandoutModel.objects.filter(
+                teacher=teacher, period=period).order_by('due_date')
+        except HandoutModel.DoesNotExist:
+            return None
+        else:
+            result = {'file_name': [], 'due_date': [], 'google_id': [], 'user_relation': []}
+            i = 0
+            for x in selected_choice:
+                result['file_name'].append(x.file_name)
+                result['due_date'].append(str(x.due_date))
+                result['google_id'].append(x.google_id)
+                result['user_relation'].append(x.user_relation)
+            return result
+
     def put_handout(self, t, p, f):
         try:
             selected_choice = HandoutModel.objects.get(file_name=f)

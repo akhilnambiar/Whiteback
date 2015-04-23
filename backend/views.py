@@ -445,7 +445,10 @@ def home(request):
     print 'CURRENT USER ID: %s' % about['permissionId']
     now = "Eren Yegar"
     user_id = about['permissionId']
-    if validate(user_id)==1:
+    user_data = validate(user_id)
+    if user_data[1]==1:
+        #helper function to populate teacher
+        get_docs_for_teach(user_data[2],user_data[3])
         return render(request, 'homev2.html',{'payasam':now})
     credentials.revoke(http)
     return render(request, 'invalid_login.html')
@@ -454,30 +457,40 @@ def home(request):
 Note: This is a helper function which will get all of the documents relevant to a teacher
 
 """
-def get_docs_for_teach(teacher):
+def get_docs_for_teach(teacher,period):
     try:
         db_model = HandoutModel()
-        errcode = db_model.get_invite(u)
-        if errcode[2] == -1:
-            res = {'errcode': errcode[2], 'file_name': None, 'date': None}
-        else:
-            res = {'errcode': errcode[2], 'file_name': errcode[0], 'date': errcode[1]}
-        return HttpResponse(json.dumps(res), content_type='application/json')
+        documents = {}
+        teachers = db_model.get_teachers(user_id)
+        db_model.get_handouts(teacher,period)
+
+
+        for teacher in teachers:
+            teacher_user = UsersModel.objects.get(user=teacher)
+            handouts = HandoutModel.objects.filter(user_relation=teacher_user)
+            files = []
+            for values in handouts:
+                files.append(model_to_dict(values))
+            documents.update({ "teacher" : teacher, "files" : files })
+            print documents
+        return HttpResponse(json.dumps(documents), content_type='application/json')
     except Exception, ex:
-        render(logging.exception("Something awful happened!"))
+        render(logging.exception("Something awful happened when getting documents!"))
 
 """
 A helper function which will validate a user
 @param
 @param
-@return 1 if the user is valid, -1 otherwise
+@the errcode and the object packaged into an array
+If invalid, it would have [None,-1]
+If valid, [user, errcode, teacher, period]
 """
 def validate(user_id):
     db_model = UsersModel()
     errcode = db_model.login(user_id)
     if errcode[1] == 1:
-        return 1
-    return -1
+        return errcode
+    return [None,-1]
 
 
 @csrf_exempt
