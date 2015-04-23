@@ -59,6 +59,11 @@
 
     </style>
   </style>
+  <script type="text/javascript">
+    document.getElementById("myButton").onclick = function () {
+        location.href = "https://limitless-wildwood-8014.herokuapp.com/web_login";
+    };
+  </script>
 </head>
 <body class="loginbody">
   <section class="container">
@@ -70,7 +75,7 @@
         <h1 class="form-signin-heading boldWalk">Classboard</h1>
         <h3>invalid username please try again or register</h3>
         <br>
-        <button class="homebtn" formaction="/portal" type="submit">Sign in</button>
+        <button id="myButton" class="homebtn"  type="submit">Sign in</button>
         <button class="homebtn" formaction="/web_register" type="submit">Register</button>
       </form>
 
